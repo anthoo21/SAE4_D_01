@@ -1,7 +1,9 @@
 # SAE4_D_01
 
-1. Toutes les tâches de développement sont terminées
-2. Les tests unitaires sont rédigés et vérifiés à un niveau d’au moins 80%
+Définition de finie
+
+1. Les tests unitaires sont rédigés et vérifiés à un niveau d’au moins 80%
+2. L'application est dévelopée selon le design patern MVC
 3. Le code source est envoyé sur github sur la branche principale
 4. Les US sont validées par le PO
 5. La revue croisée du code a été réalisée
