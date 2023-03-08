@@ -4,7 +4,7 @@ L'objectif du projet est la réalisation d'une application WEB destinée à des 
 
 Le projet est codé en html, css et curl en php. L’architecture est de type MVC.
 
-# Participants au projet
+# Participants au projet et leur rôle
 Sprint 1
 - Gestionnaire des configurations : Anthony
 - Scrum master (réunions, deadlines, rdv, comptes rendus, …) : Julie
