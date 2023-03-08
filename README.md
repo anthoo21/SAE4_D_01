@@ -5,9 +5,24 @@ L'objectif du projet est la réalisation d'une application WEB destinée à des 
 Le projet est codé en html, css et curl en php. L’architecture est de type MVC.
 
 # Participants au projet
-BONNET Julie : SCRUM Master, développeuse
-FROMENT Jean-François : Product Owner, développeur
-ENJALBERT Anthony : Gestionnaire des configurations, développeur
+Sprint 1
+- Gestionnaire des configurations : Anthony
+- Scrum master (réunions, deadlines, rdv, comptes rendus, …) : Julie
+- Product Owner (responsable projet, US, …) : Jean-François
+- Développeurs : Anthony, Julie et Jean-François
+
+Sprint 2
+- Gestionnaire des configurations : Jean-François
+- Scrum master (réunions, deadlines, rdv, comptes rendus, …) : Anthony
+- Product Owner (responsable projet, US, …) : Julie
+- Développeurs : Anthony, Julie et Jean-François
+
+Sprint 3
+- Gestionnaire des configurations : Julie
+- Scrum master (réunions, deadlines, rdv, comptes rendus, …) : Jean-François
+- Product Owner (responsable projet, US, …) : Anthony
+- Développeurs : Anthony, Julie et Jean-François
+
 
 # Définition de fini
 
@@ -23,6 +38,7 @@ ENJALBERT Anthony : Gestionnaire des configurations, développeur
 10. Les livrables sont mis à jour (documentation utilisateurs, dossier de test ... )
 
 # Lien vers les ressources utiles
-Drive du projet : https://drive.google.com/drive/folders/17Puub2JmAno6aOJkvTHmIenz55v1OcyW?usp=sharing
-Zenhub : https://app.zenhub.com/workspaces/sae4-d-01-dolistats-63ef78d2947d630010f39c44?invite=WmPKjU4su9Vru3aVtdxHQW7H
-GitHub : https://github.com/anthoo21/SAE4_D_01_Dolistats.git
+- Drive du projet : https://drive.google.com/drive/folders/17Puub2JmAno6aOJkvTHmIenz55v1OcyW?usp=sharing
+- Zenhub : https://app.zenhub.com/workspaces/sae4-d-01-dolistats-63ef78d2947d630010f39c44?invite=WmPKjU4su9Vru3aVtdxHQW7H
+- GitHub : https://github.com/anthoo21/SAE4_D_01_Dolistats.git
+- Figma : https://www.figma.com/proto/Ye6K9Xhxr5IYRzNzTFnZNW/Dolistats?node-id=10-100&starting-point-node-id=10%3A100
