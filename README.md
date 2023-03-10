@@ -4,6 +4,8 @@ L'objectif du projet est la réalisation d'une application WEB destinée à des 
 
 Le projet est codé en html, css et curl en php. L’architecture est de type MVC.
 
+Notre projet est hébergé sur Webhost : https://dolistatsb.000webhostapp.com/
+
 # Participants au projet et leur rôle
 Sprint 1
 - Gestionnaire des configurations : Anthony
@@ -41,4 +43,4 @@ Sprint 3
 - Drive du projet : https://drive.google.com/drive/folders/17Puub2JmAno6aOJkvTHmIenz55v1OcyW?usp=sharing
 - Zenhub : https://app.zenhub.com/workspaces/sae4-d-01-dolistats-63ef78d2947d630010f39c44?invite=WmPKjU4su9Vru3aVtdxHQW7H
 - GitHub : https://github.com/anthoo21/SAE4_D_01_Dolistats.git
-- Figma : https://www.figma.com/proto/Ye6K9Xhxr5IYRzNzTFnZNW/Dolistats?node-id=10-100&starting-point-node-id=10%3A100
+- Figma : https://www.figma.com/proto/Ye6K9Xhxr5IYRzNzTFnZNW/Dolistats?node-id=10-100&starting-point-node-id=10%3A
