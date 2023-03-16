@@ -1,7 +1,7 @@
 <?php
-/*
+/**
  * yasmf - Yet Another Simple MVC Framework (For PHP)
- *     Copyright (C) 2023   Franck SILVESTRE
+ *     Copyright (C) 2019   Franck SILVESTRE
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Affero General Public License as published
@@ -17,15 +17,24 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/*
- * Sample without database connexion
- */
-const HELLO_WORLD_PREFIX = "/hello_world";
-require $_SERVER[ 'DOCUMENT_ROOT' ] . HELLO_WORLD_PREFIX . '/lib/vendor/autoload.php';
+namespace yasmf;
 
+use controllers;
 
-use application\DefaultComponentFactory;
-use yasmf\Router;
+class Router
+{
+    public function route()
+    {
+        // set the controller to enrole
+        $controllerName = HttpHelper::getParam('controller') ?: 'Home';
+        $controllerQualifiedName = "controllers\\" . $controllerName . "Controller";
+        $controller = new $controllerQualifiedName();
+        // set the action to trigger
+        $action = HttpHelper::getParam('action') ?: 'index';
+        // trigger the appropriate action and get the resulted view
+        $view = $controller->$action();
+        // render the view
+        $view->render();
+    }
+}
 
-$router = new Router(new DefaultComponentFactory()) ;
-$router->route('hello_world');

@@ -1,7 +1,7 @@
 <?php
-/*
+/**
  * yasmf - Yet Another Simple MVC Framework (For PHP)
- *     Copyright (C) 2023   Franck SILVESTRE
+ *     Copyright (C) 2019   Franck SILVESTRE
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Affero General Public License as published
@@ -17,19 +17,16 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace controllers;
+namespace yasmf;
 
-use PHPUnit\Framework\TestCase;
 
-class HomeControllerTest extends TestCase
+class HttpHelper
 {
-
-    private HomeController $homeController;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        // given a home controller
-        $this->homeController = new HomeController();
+    public static function getParam($name) {
+        if (isset($_GET[$name])) return $_GET[$name];
+        if (isset($_POST[$name])) return $_POST[$name];
+        if (isset($_FILES[$name])) return $_FILES[$name];
+        if (isset($_SESSION[$name])) return $_SESSION[$name];
+        return null;
     }
 }

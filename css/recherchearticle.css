@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjord+One&family=Kanit&display=swap');
+
+body {
+	font-family: 'Kanit';
+}
+
+.titre {
+    margin-top: 15px;
+    font-family:'Kanit';
+    font-size:5em;
+	text-align: center;
+	font-weight: bold;
+	padding-bottom:5%;
+}
