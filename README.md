@@ -28,7 +28,7 @@ Sprint 3
 
 # Définition de fini
 
-1. Les tests unitaires sont rédigés et vérifiés à un niveau d’au moins 80%
+1. Les tests unitaires sont rédigés,vérifiés et automatisés couvre le code à un minimum de 80%
 2. L'application est dévelopée selon le design patern MVC
 3. Le code source est envoyé sur github sur la branche principale
 4. Les US sont validées par le PO
@@ -38,6 +38,7 @@ Sprint 3
 8. Les tests d’intégration ont été joués et validés
 9. Les pages du site s’affiche en moins de 0,1 secondes dans l’environnement de développement
 10. Les livrables sont mis à jour (documentation utilisateurs, dossier de test ... )
+11. Le code est validée par PHPStan à un niveau de tolérance minimum de 6
 
 # Lien vers les ressources utiles
 - Drive du projet : https://drive.google.com/drive/folders/17Puub2JmAno6aOJkvTHmIenz55v1OcyW?usp=sharing
