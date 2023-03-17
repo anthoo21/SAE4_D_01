@@ -11,20 +11,21 @@
   <body>
 	<div class="container nav">
 		<!-- Nav-bar -->
+		<div class="row"></div>
 		<div class="row col-xs-12">
 			<div class="col-xs-5">
-                <div class="col-xs-1"><a href="rechercherArticle.php"><img class="logoNav" src="../assets/RechercheArticleMenu.png" alt="logo Recherche Articles"></a></div>
-				<div class="col-xs-1"><img class="logoNav" src="../assets/RechercheClientMenu.png" alt="logo Recherche clients"></div>
-                <div class="col-xs-1"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" alt="logo palmares articles"></div>
-				<div class="col-xs-1"><img class="logoNav" src="../assets/PalmaresClienrMenu.png" alt="logo palmares client"></div>
-                <div class="col-xs-1"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" alt="logo CA"></div>
+                <div class="col-xs-2"><a href="rechercherArticle.php"><img class="logoNav" src="../assets/RechercheArticleMenu.png" alt="logo Recherche Articles"></a></div>
+				<div class="col-xs-2"><img class="logoNav" src="../assets/RechercheClientMenu.png" alt="logo Recherche clients"></div>
+                <div class="col-xs-2"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" alt="logo palmares articles"></div>
+				<div class="col-xs-2"><img class="logoNav" src="../assets/PalmaresClientMenu.png" alt="logo palmares client"></div>
+                <div class="col-xs-2"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" alt="logo CA"></div>
 			</div>	
-			<div class="col-xs-4">
+			<div class="col-xs-5">
 			<!--Espace dans la navbar-->
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-2">
 				<form action="rechercheClient.php" method="post">				
-					<div class="deco"> Nom Prénom
+					<div class="col-xs-7"> Nom Prénom
 					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
                     <div class="col-xs-1"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
 				</form>
@@ -35,45 +36,37 @@
 		<div class="row">
             <p class="titre">Rechercher clients</p>
         </div>
-		<!--Recherche par critères-->
-		<div class="row espaceB">
-			<div class="row rechCri">
-				<form class="rechercheCriteres" method="post" action="accueilMedecin.php">
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<h3>Recherche par critère :</h3>
-					</div>
-					<!--Recherche par nom prénom -->
-					<div class="col-md-3 col-sm-4 col-xs-12 inputCritere">
-						<input type="texte" name="rechercheNom" class="form-control" placeholder="NOM" value="<?php 
-						if(isset($_POST['rechercheNom'])) {
-							echo $_POST['rechercheNom'];
-						} else {
-							echo '';
-						}
-						?>">
-					</div>
-					<!--Bouton rechercher -->
-					<div class="col-md-3 col-sm-4 col-xs-12 divBtn">
-						<input type="submit" name="rechercher" value="Rechercher" class="buttonRechercher">
-					</div>	
-				</form>
-			</div>
-		</div>
-		<!--Liste des patients-->
+		<!-- Recherche par critères -->
+		<div class="row">
+            <div class="search-box">
+                <form action="index.php" method="post">
+                    <input type="search" name="recherche" id="search-input" placeholder="Libellé de l'article" required value="<?php 
+					if(isset($_POST['rechercheNom'])) {
+						echo $_POST['rechercheNom'];
+					} else {
+						echo '';
+					}
+					?>">
+                    <input type="hidden" name="controller" value="articles">
+                    <button type="submit" class="search-button"><span class="fa fa-search"></span></button>
+                </form>
+            </div>
+        </div>
+		<!--Liste des clients-->
         <div class="row">
             <table class="table table-striped">
                 <tr>
-                    <th>ID</th>
-                    <th>Libellé</th>
+                    <th>Réf.</th>
+                    <th>Nom</th>
+					<th>Code postal</th>
                 </tr>
                 <?php 
-                $compteur = 0;
                 foreach($client as $ligne) {
                     echo "<tr>";
-                        echo "<td>".$compteur."</td>";
-                        echo "<td>".$ligne['label']."</td>";
+                        echo "<td>".$ligne['ref']."</td>";	  //Vérifier le nom de la variable
+                        echo "<td>".$ligne['label']."</td>";  //Vérifier le nom de la variable
+						echo "<td>".$ligne['cp']."</td>";     //Vérifier le nom de la variable
                     echo "</tr>";
-                    $compteur++;
                 }
                 ?>
             </table>
