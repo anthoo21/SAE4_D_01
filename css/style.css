@@ -1,16 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fjord+One&family=Kanit&display=swap');
+
 /*  __________________________________________________________________________ */
 /* |                         PAGE DE CONNEXION                                |*/
 /* |__________________________________________________________________________|*/
+
 body {
 	background-color : white;
 	font-family: 'Fjord One';
-	color: white;
+    color: white;
 }
-.container {
-    width: 659px; 
-    margin-left: 25%;
+
+h4 {
+	font-size:1em;
+}
+
+/* Ecran tablette */
+@media (max-width: 1280px) {
+	.menu {
+		width: 559px; 
+		margin-left: 15%;
+	}
+	.titre {
+		margin-top: 10px;
+		font-size:3em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:5px;
+	}
+}
+
+/* Ecran téléphone */
+@media (max-width: 800px) {
+	.menu {
+		width: 459px; 
+		margin-left: 3%;
+	}
+	.titre {
+		margin-top: 10px;
+		font-size:2em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:5px;
+	}
+}
+
+/* Ecran ordinateur */
+@media (min-width: 1281px) {
+	.menu {
+		width: 659px; 
+    	margin-left: 27%;
+	}
+	.titre {
+		margin-top: 15px;
+		font-size:5em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:15px;
+	}
+}
+
+.menu {
     top: center;
 
 	background-color: #263C5B;
@@ -25,18 +78,20 @@ body {
 
     filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
 }
+
 /* "Connexion à mon compte" */
 .titre {
-    margin-top: 15px;
     font-family:'Kanit';
-    font-size:5em;
 	text-align: center;
 	font-weight: bold;
 	padding-bottom:5%;
 }
+
 .enRouge {
     color : #F41818;
+	text-align: center;
 }
+
 /*Bouton "Me Connecter"*/
 .buttonConnect {
 	background:#4EA9BD;;
@@ -48,11 +103,8 @@ body {
 	text-align:center;
 	padding:10px;
 }
+
 /* Div contenant le bouton "Me connecter"*/
 .btnConnect {
 	text-align:center;
-}
-/* Espacement entre les divs */
-div {
-	margin-bottom:20px;
 }
