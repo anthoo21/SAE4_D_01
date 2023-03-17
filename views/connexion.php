@@ -12,51 +12,54 @@
 		<!--Image accueil-->
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="logo">
-                    <img class="logoDoli" src="assets/Logo.png" alt="Logo Doli">
+				<div class="logoDoli">
+                    <img class="logo" src="assets/Logo.png" alt="Logo Doli">
 				</div>
 			</div>	
 		</div>
 		<!--Authentification-->
 		<div class="row container">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-				 <?php 
-				if(isset($codeHttp)) { ?>
+				<form action="index.php" method="post">
+					<p class="titre">Dolistats</p>
+					<?php 
+						if(isset($codeHttp)) { ?>
+							<div class="row">
+								<h3 class="enRouge center">Identifiant ou mot de passe incorrect !</h3>
+							</div>
+						<?php
+						}?>
 					<div class="row">
-						<h3 class="enRouge center">Identifiant ou mot de passe incorrect !</h3>
+						<!--Identifiant-->
+						<div class="col-xs-2"></div>
+						<div class="col-xs-3 <?php if($login=="") { echo "enRouge";}?> ">
+							<h4>Identifiant : </h4>				
+						</div>
+						<div class="col-xs-5">
+							<input type="text" name="login" class="form-control saisie fond">
+						</div>
+						<div class="col-xs-2"></div>
 					</div>
-				<?php
-				}?>
-					<form action="index.php" method="post">
-						<p class="titre">Dolistats</p>
-						<div class="row">
-							<!--Identifiant-->
-							<div class="col-xs-2"></div>
-							<div class="col-xs-3">
-								<label>Identifiant : </label>				
-							</div>
-							<div class="col-xs-5">
-								<input type="text" name="login" class="form-control saisie fond">
-							</div>
-							<div class="col-xs-2"></div>
+					<div class="row">
+						<!--Mot de passe-->
+						<div class="col-xs-2"></div>
+						<div class="col-xs-3 <?php if($password=="") { echo "enRouge";}?>">
+							<h4>Mot de passe : </h4>
 						</div>
-						<div class="row">
-							<!--Mot de passe-->
-							<div class="col-xs-2"></div>
-							<div class="col-xs-3">
-								<label>Mot de passe : </label>
-							</div>
-							<div class="col-xs-5">
-								<input type="password" name="password" class="form-control saisie fond">
-							</div>
-							<div class="col-xs-2"></div>
+						<div class="col-xs-5">
+							<input type="password" name="password" class="form-control saisie fond">
 						</div>
-						<div class="row btnConnect">
-							<input type="hidden" name="controller" value="Home">
-							<input type="hidden" name="action" value="connexion">
-							<input type="submit" name="connexion" value="Se connecter" class="buttonConnect">
-						</div>
-					</form>
+						<div class="col-xs-2"></div>
+					</div>
+					<div class="row btnConnect">
+						<input type="hidden" name="controller" value="Home">
+						<input type="hidden" name="action" value="connexion">
+						<input type="submit" name="connexion" value="Se connecter" class="buttonConnect">
+					</div>
+					<?php
+					?>
+				</form>
+
 			</div>	
 		</div>
   </body>
