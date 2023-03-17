@@ -18,7 +18,7 @@
 			</div>	
 		</div>
 		<!--Authentification-->
-		<div class="row container">
+		<div class="row container menu">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<form action="index.php" method="post">
 					<p class="titre">Dolistats</p>
