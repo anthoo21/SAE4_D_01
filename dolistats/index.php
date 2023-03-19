@@ -20,12 +20,12 @@
 /*
  * Sample without database connexion
  */
-const HELLO_WORLD_PREFIX = "/hello_world";
-require $_SERVER[ 'DOCUMENT_ROOT' ] . HELLO_WORLD_PREFIX . '/lib/vendor/autoload.php';
+const DOLISTATS_PREFIX = "/sae4d-01-dolistats/dolistats";
+require $_SERVER[ 'DOCUMENT_ROOT' ] . DOLISTATS_PREFIX . '/lib/vendor/autoload.php';
 
 
 use application\DefaultComponentFactory;
 use yasmf\Router;
 
 $router = new Router(new DefaultComponentFactory()) ;
-$router->route('hello_world');
+$router->route('sae4d-01-dolistats/dolistats');

@@ -19,17 +19,25 @@
 
 namespace application;
 
-use controllers\HelloWorldController;
 use controllers\HomeController;
+use controllers\ArticlesController;
+use services\LoginService;
+use services\ArticlesService;
 use yasmf\ComponentFactory;
 use yasmf\NoControllerAvailableForName;
 use yasmf\NoServiceAvailableForName;
 
+require("services/LoginService.php");
+require("services/ArticlesService.php");
 /**
  *  The controller factory
  */
 class DefaultComponentFactory implements ComponentFactory
 {
+
+
+    private ?LoginService $loginService = null;
+    private ?ArticlesService $articlesService = null;
 
     /**
      * @param string $controller_name the name of the controller to instanciate
@@ -39,9 +47,48 @@ class DefaultComponentFactory implements ComponentFactory
     public function buildControllerByName(string $controller_name): mixed {
         return match ($controller_name) {
             "Home" => $this->buildHomeController(),
-            "HelloWorld" => $this->buildHelloWorldController(),
+            "Articles" => $this->buildArticlesController(),
             default => throw new NoControllerAvailableForName($controller_name)
         };
+    }
+
+    public function buildServiceByName(string $service_name): mixed
+    {
+        return match($service_name) {
+            "Login" => $this->buildLoginService(),
+            "Articles" => $this->buildArticlesService(),
+            default => throw new NoServiceAvailableForName($service_name)
+        };
+    }
+
+    /**
+     * @return LoginService
+     */
+    private function buildLoginService(): LoginService
+    {
+        if ($this->loginService == null) {
+            $this->loginService = new LoginService();
+        }
+        return $this->loginService;
+    }
+
+    /**
+     * @return LoginService
+     */
+    private function buildArticlesService(): ArticlesService
+    {
+        if ($this->articlesService == null) {
+            $this->articlesService = new ArticlesService();
+        }
+        return $this->articlesService;
+    }
+
+    public function buildHomeController(): HomeController {
+        return new HomeController($this->buildLoginService());
+    }
+
+    public function buildArticlesController(): ArticlesController {
+        return new ArticlesController($this->buildArticlesService());
     }
 
 }

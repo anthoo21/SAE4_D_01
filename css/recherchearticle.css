@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjord+One&family=Kanit&display=swap');
+
+body {
+	font-family: 'Kanit';
+}
+
+.titre {
+    margin-top: 15px;
+    font-family:'Kanit';
+    font-size:5em;
+	text-align: center;
+	font-weight: bold;
+	padding-bottom:5%;
+}
+
+.search-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
+	width: 568px;
+	height: 69px;
+	background-color: #4EA9BD;
+	padding: 0;
+  }
+  
+  form {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	margin: 0;
+	width: 100%;
+  }
+  
+  label {
+	display: none;
+  }
+  
+  input[type="search"] {
+	width: calc(100% - 50px);
+	height: 100%;
+	border: none;
+	background-color: transparent;
+	font-size: 20px;
+	color: white;
+	padding: 0 10px;
+  }
+  
+  button[type="submit"] {
+	border: none;
+	background-color: transparent;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+  }
+  
+  .search-button {
+	margin-left: 10px;
+  }
+
+  
+  .sr-only {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+  }
+  
+  

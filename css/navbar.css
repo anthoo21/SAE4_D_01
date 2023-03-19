@@ -1,0 +1,43 @@
+.navbar {
+  height: 72px;
+  background-color: #4EA9BD;
+  display: flex;
+  padding: 0 20px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left a {
+  color: white;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right span {
+  color: white;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.navbar-right img {
+  height: 40px;
+  margin-right: 20px;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+.logoNav {
+  width: 55px;
+  height: 51px;
+}
