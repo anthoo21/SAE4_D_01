@@ -21,14 +21,20 @@ namespace application;
 
 use controllers\HomeController;
 use controllers\ArticlesController;
+use controllers\ClientsController;
+use controllers\FacturesController;
 use services\LoginService;
 use services\ArticlesService;
+use services\ClientsService;
+use services\FacturesService;
 use yasmf\ComponentFactory;
 use yasmf\NoControllerAvailableForName;
 use yasmf\NoServiceAvailableForName;
 
 require("services/LoginService.php");
 require("services/ArticlesService.php");
+require("services/ClientsService.php");
+require("services/FacturesService.php");
 /**
  *  The controller factory
  */
@@ -38,6 +44,8 @@ class DefaultComponentFactory implements ComponentFactory
 
     private ?LoginService $loginService = null;
     private ?ArticlesService $articlesService = null;
+    private ?ClientsService $clientsService = null;
+    private ?FacturesService $facturesService = null;
 
     /**
      * @param string $controller_name the name of the controller to instanciate
@@ -48,6 +56,8 @@ class DefaultComponentFactory implements ComponentFactory
         return match ($controller_name) {
             "Home" => $this->buildHomeController(),
             "Articles" => $this->buildArticlesController(),
+            "Clients" => $this->buildClientsController(),
+            "Factures" => $this->buildFacturesController(),
             default => throw new NoControllerAvailableForName($controller_name)
         };
     }
@@ -57,6 +67,8 @@ class DefaultComponentFactory implements ComponentFactory
         return match($service_name) {
             "Login" => $this->buildLoginService(),
             "Articles" => $this->buildArticlesService(),
+            "Clients" => $this->buildClientsService(),
+            "Factures" => $this->buildFacturesService(),
             default => throw new NoServiceAvailableForName($service_name)
         };
     }
@@ -73,7 +85,7 @@ class DefaultComponentFactory implements ComponentFactory
     }
 
     /**
-     * @return LoginService
+     * @return ArticlesService
      */
     private function buildArticlesService(): ArticlesService
     {
@@ -83,12 +95,42 @@ class DefaultComponentFactory implements ComponentFactory
         return $this->articlesService;
     }
 
+    /**
+     * @return ClientsService
+     */
+    private function buildClientsService(): ClientsService
+    {
+        if ($this->clientsService == null) {
+            $this->clientsService = new ClientsService();
+        }
+        return $this->clientsService;
+    }
+
+    /**
+     * @return FacturesService
+     */
+    private function buildFacturesService(): FacturesService
+    {
+        if ($this->facturesService == null) {
+            $this->facturesService = new FacturesService();
+        }
+        return $this->facturesService;
+    }
+
     public function buildHomeController(): HomeController {
         return new HomeController($this->buildLoginService());
     }
 
     public function buildArticlesController(): ArticlesController {
         return new ArticlesController($this->buildArticlesService());
+    }
+
+    public function buildClientsController(): ClientsController {
+        return new ClientsController($this->buildClientsService());
+    }
+
+    public function buildFacturesController(): FacturesController {
+        return new FacturesController($this->buildFacturesService());
     }
 
 }

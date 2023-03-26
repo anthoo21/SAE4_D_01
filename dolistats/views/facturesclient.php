@@ -75,55 +75,48 @@
     </div>
     <div class="container ">
 		<div class="row">
-            <p class="titre">Rechercher articles</p>
+            <p class="titre">Historique des factures</p>
+            <p>Du client</p>
         </div>
-		<!-- Recherche par critères -->
-		<div class="row">
-            <div class="search-box">
-                <form action="index.php" method="post" class="form">
-                    <label for="search-input" class="sr-only">Rechercher</label>
-                    <input type="search" name="recherche" id="search-input" placeholder="Rechercher" value="<?php 
-                    if(isset($recherche)) {
-                        echo $recherche;
-                    }
-                    ?>">
-                    <input type="hidden" name="controller" value="Articles">
-                    <input type="hidden" name="action" value="recherche">
-                    <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
-                    <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                    <button type="submit" class="search-button submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-        </div>
-		<!--Liste des clients-->
+		
+		<!--Liste des factures-->
         <?php   
-        if(isset($resultat)) {
+        if(isset($recherche)) {
         ?>
         <div class="row">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Réf.</th>
-                        <th>Label</th>
+                        <th>Numéro facture</th>
+                        <th>Date</th>
+                        <th>Total HT</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php 
                 foreach($resultat as $ligne) {
-                    echo "<tr class=\"accordion\">";
-                        echo "<td>".$ligne['ref']."</td>";
-                        echo "<td>".$ligne['label']."</td>";
-                        echo "<td><button class=\"accordion-button\"></button></td>";
-                    echo "</tr>";
-                    echo "<tr class=\"accordion-content\">";
+                    if($nomClient == 1) {
+                        echo "<tr class=\"accordion\">";
+                            echo "<td>".$ligne['code_client']."</td>";
+                            echo "<td>".$ligne['name']."</td>";
+                            ?>
+                            <form action="index.php" method="post">
+                                <input type="hidden" name="controller" value="Factures">
+                                <input type="hidden" name="action" value="facture">
+                                <td><button type="submit"><i class="fas fa-eye"></i></button></td>                                
+                            </form>
+                            <?php
+                            echo "<td><button class=\"accordion-button\"></button></td>";
+                        echo "</tr>";
+                        echo "<tr class=\"accordion-content\">";
                         echo "<td></td>";
-                        echo "<td>Description : ".$ligne['description']."<br>
-                              Prix HT : ".(float)number_format($ligne['price'], 2, '.', '')."<br>
-                              Prix TTC : ".(float)number_format($ligne['price_ttc'], 2, '.', '')."<br>
-                              Prix min TTC : ".(float)number_format($ligne['price_min_ttc'], 2, '.', '')."<br>
-                              Stocks : ".$ligne['stock_reel']."<br>
-                              Poids : ".$ligne['height']."</td>";
+                        echo "<td>Numéro de téléphone : ".$ligne['phone']."<br>
+                              Adresse mail : ".$ligne['email']."<br>
+                              Adresse : ".$ligne['address']."<br>
+                              Soumis à la TVA : ".$tva."</td>";
                     echo "</tr>";
+                    }
                 }
                 ?>
                 </tbody>
