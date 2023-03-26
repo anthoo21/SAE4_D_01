@@ -1,48 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="Fr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/accueil.css">
+    <link rel="stylesheet" href="../css/styleRecherche.css">
     <title>Document</title>
 </head>
 
+<?php 
+if(isset($resultat)) {
+    foreach($resultat as $ligne) {
+        $apiKey = $ligne['token'];
+    }
+}
+?>
 <body>
-    <nav class="navbar">
-        <div class="navbar-left">
-            <form action="index.php" method="post">
-                <input type="hidden" name="controller" value="Articles">
-                <button type="submit"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
-                        alt="logo Recherche Articles" title="Recherche articles"></button>
-            </form>
-            <form action="index.php" method="post">
-                <button type="submit"><img class="logoNav" src="../assets/RechercheClientMenu.png"
-                        alt="logo Recherche clients" title="Recherche clients"></button>
-            </form>
-            <form action="index.php" method="post">
-                <button type="submit"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png"
-                        alt="logo palmares articles" title="Palmares articles"></button>
-            </form>
-            <form action="index.php" method="post">
-                <button type="submit"><img class="logoNav" src="../assets/PalmaresClientMenu.png"
-                        alt="logo palmares client" title="Palmares clients"></button>
-            </form>
-            <form action="index.php" method="post">
-                <button type="submit"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" alt="logo CA"
-                        title="Affichage chiffre d'affaire"></button>
-            </form>
-        </div>
-        <div class="navbar-right">
-            <span>NOM</span>
-            <img src="../assets/Logo.png" alt="Logo">
-        </div>
-    </nav>
-    <div class="container body">
+<div class="container nav">
+		<!-- Nav-bar -->
+		<div class="row"></div>
+		<div class="row col-xs-12">
+			<div class="col-xs-5">
+                <form action="index.php" method="post">
+                    <div class="col-xs-2">
+                        <input type="hidden" name="controller" value="Articles">
+                        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
+                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
+                        alt="logo Recherche Articles"></button>
+                    </div>
+				</form>
+                <form action="index.php" method="post">
+                    <div class="col-xs-2">
+                        <input type="hidden" name="controller" value="Clients">
+                        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
+                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheClientMenu.png"
+                        alt="logo Recherche clients"></button>
+                    </div>
+                </form>
+                <form action="index.php" method="post">
+                    <div class="col-xs-2">
+                        <input type="hidden" name="controller" value="PalmaresArticles">
+                        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
+                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" 
+                        alt="logo palmares articles"></button>
+                    </div>
+				</form>
+                <form action="index.php" method="post">
+                    <div class="col-xs-2">
+                        <input type="hidden" name="controller" value="PalmaresClients">
+                        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
+                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
+                        alt="logo palmares client"></button>
+                    </div>
+                </form>
+                <form action="index.php" method="post">
+                    <div class="col-xs-2">
+                        <input type="hidden" name="controller" value="CA">
+                        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
+                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
+                        alt="logo CA"></button>
+                    </div>
+                </form>
+			</div>	
+			<div class="col-xs-5">
+			<!--Espace dans la navbar-->
+			</div>
+			<div class="col-xs-2">
+				<form action="rechercheArticle.php" method="post">				
+					<div class="col-xs-7"> Nom Prénom
+					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
+                    <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
+				</form>
+			</div>	
+		</div>
+    </div>
+    <div class="container texteAccueil">
         <div class="row">
             <h1>Bienvenue sur Dolistats !</h1><br>
             <h2>Vous pouvez accéder, depuis la navbar, au différents menus.</h2><br>
