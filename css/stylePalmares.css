@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjord+One&family=Kanit&display=swap');
+
+/*  __________________________________________________________________________ */
+/* |                     PAGE   PALMARES  CLIENT & ARTICLE                    |*/
+/* |__________________________________________________________________________|*/
+
+.nav {
+	background: #4EA9BD;
+	width: 100%;
+	height: 75px;
+}
+
+.logoNav {
+    width: 55px;
+	height: 51px;
+	align-items: center;
+	margin-left: 5px;
+    left: 1279px;
+}
+
+.boutonNavbar {
+	border: none;
+	background: none;
+}
+
+body {
+	background-color : white;
+	font-family: 'Fjord One';
+}
+
+/* Ecran tablette */
+@media (max-width: 1280px) {
+	.titre {
+		margin-top: 10px;
+		font-size:3em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:5px;
+	}
+}
+
+/* Ecran téléphone */
+@media (max-width: 800px) {
+	.titre {
+		margin-top: 10px;
+		font-size:2em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:5px;
+	}
+}
+
+/* Ecran ordinateur */
+@media (min-width: 1281px) {
+	.titre {
+		margin-top: 15px;
+		font-size:5em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:10px;
+	}
+}
+
+/* "Historique des factures */
+.titre {
+    font-family:'Kanit';
+	text-align: center;
+	font-weight: bold;
+}
+  
+.form {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	width: 100%;
+}
