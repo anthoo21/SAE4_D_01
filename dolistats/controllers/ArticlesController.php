@@ -46,6 +46,7 @@ class ArticlesController
         return $view;
     }
 
+
     public function palmares() {
         $view = new View("views/palmaresArticle.php");
         return $view;
