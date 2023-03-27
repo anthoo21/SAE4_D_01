@@ -5,8 +5,7 @@
       <meta charset="utf-8">
 	  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 	  <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
-	  <link rel="stylesheet" href="../css/styleRecherche.css"> 
-      <link rel="stylesheet" href="../css/testAccordeon.css"> 
+	  <link rel="stylesheet" href="../css/styleFacture.css"> 
   </head>
   
   <body>
@@ -76,7 +75,7 @@
     <div class="container ">
 		<div class="row">
             <p class="titre">Historique des factures</p>
-            <p>Du client</p>
+            <p class="sousTitre">du client NOM Prénom</p>
         </div>
 		
 		<!--Liste des factures-->
