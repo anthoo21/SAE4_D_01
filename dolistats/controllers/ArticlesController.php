@@ -45,4 +45,9 @@ class ArticlesController
         $view->setVar('recherche', $recherche);
         return $view;
     }
+
+    public function palmares() {
+        $view = new View("views/palmaresArticle.php");
+        return $view;
+    }
 }
