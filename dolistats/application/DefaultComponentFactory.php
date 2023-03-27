@@ -21,14 +21,17 @@ namespace application;
 
 use controllers\HomeController;
 use controllers\ArticlesController;
+use controllers\PalmaresArticlesController;
 use services\LoginService;
 use services\ArticlesService;
+use services\PalmaresQuantiteService;
 use yasmf\ComponentFactory;
 use yasmf\NoControllerAvailableForName;
 use yasmf\NoServiceAvailableForName;
 
 require("services/LoginService.php");
 require("services/ArticlesService.php");
+require("services/PalmaresQuantiteService.php");
 /**
  *  The controller factory
  */
@@ -38,6 +41,7 @@ class DefaultComponentFactory implements ComponentFactory
 
     private ?LoginService $loginService = null;
     private ?ArticlesService $articlesService = null;
+    private ?PalmaresQuantiteService $palmaresQuantiteService = null;
 
     /**
      * @param string $controller_name the name of the controller to instanciate
@@ -48,6 +52,7 @@ class DefaultComponentFactory implements ComponentFactory
         return match ($controller_name) {
             "Home" => $this->buildHomeController(),
             "Articles" => $this->buildArticlesController(),
+            "PalmaresArticles" => $this->buildPalmaresArticlesController(),
             default => throw new NoControllerAvailableForName($controller_name)
         };
     }
@@ -57,6 +62,7 @@ class DefaultComponentFactory implements ComponentFactory
         return match($service_name) {
             "Login" => $this->buildLoginService(),
             "Articles" => $this->buildArticlesService(),
+            "PalmaresArticles" => $this->buildPalmaresQuantiteService(),
             default => throw new NoServiceAvailableForName($service_name)
         };
     }
@@ -83,6 +89,18 @@ class DefaultComponentFactory implements ComponentFactory
         return $this->articlesService;
     }
 
+    /**
+     * @return LoginService
+     */
+    private function buildPalmaresQuantiteService(): PalmaresQuantiteService
+    {
+        if ($this->palmaresQuantiteService == null) {
+            $this->palmaresQuantiteService = new PalmaresQuantiteService();
+        }
+        return $this->palmaresQuantiteService;
+    }
+
+
     public function buildHomeController(): HomeController {
         return new HomeController($this->buildLoginService());
     }
@@ -90,5 +108,11 @@ class DefaultComponentFactory implements ComponentFactory
     public function buildArticlesController(): ArticlesController {
         return new ArticlesController($this->buildArticlesService());
     }
+
+    public function buildPalmaresArticlesController(): PalmaresArticlesController {
+        return new PalmaresArticlesController($this->buildPalmaresQuantiteService());
+    }
+
+    
 
 }

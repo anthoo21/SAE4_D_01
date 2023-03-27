@@ -25,8 +25,24 @@ class ArticlesController
      * @return View the default view
      */
     public function index() {
-        return new View("views/recherchearticle");
+        $apiUrl = HttpHelper::getParam('apiUrl');
+        $apiKey = HttpHelper::getParam('apiKey');
+        $view = new View("views/recherchearticle");
+        $view->setVar('apiUrl', $apiUrl);
+        $view->setVar('apiKey', $apiKey);
+        return $view;
     }
 
-
+    public function recherche() {
+        $recherche = htmlspecialchars(HttpHelper::getParam('recherche'));
+        $apiUrl = HttpHelper::getParam('apiUrl');
+        $apiKey = HttpHelper::getParam('apiKey');
+        $resultat = $this->articlesService->getArticles($recherche, $apiUrl, $apiKey);
+        $view = new View("views/recherchearticle");
+        $view->setVar('apiUrl', $apiUrl);
+        $view->setVar('apiKey', $apiKey);
+        $view->setVar('resultat', $resultat);
+        $view->setVar('recherche', $recherche);
+        return $view;
+    }
 }

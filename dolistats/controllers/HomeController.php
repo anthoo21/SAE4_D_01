@@ -50,6 +50,8 @@ class HomeController
         $resultat = $this->loginService->getUser($login, $password, $apiUrl);
         if(isset($resultat)) {
             $view = new View('views/accueil');
+            $view->setVar('apiUrl', $apiUrl);
+            $view->setVar('resultat', $resultat);
         } else {
             $view = new View('views/connexion');
             $view->setVar('codeHttp', $codeHttp);
