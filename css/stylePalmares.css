@@ -115,3 +115,11 @@ input {
     justify-content: space-around;
     padding : 7px;
 }
+
+.A {
+    font-size : 1.2em;
+}
+
+.nb {
+    width: 62px;
+}
