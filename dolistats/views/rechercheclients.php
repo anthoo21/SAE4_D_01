@@ -139,6 +139,8 @@
                               Adresse mail : ".$ligne['email']."<br>
                               Adresse : ".$ligne['address']."<br>
                               Soumis à la TVA : ".$tva."</td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
                     echo "</tr>";
                     }
                 }

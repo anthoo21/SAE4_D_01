@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
-    <link rel="stylesheet" href="../css/styleRecherche.css">
+    <link rel="stylesheet" href="../css/styleAccueil.css">
     <title>Document</title>
 </head>
 
@@ -79,11 +79,13 @@ if(isset($resultat)) {
 			</div>	
 		</div>
     </div>
-    <div class="container texteAccueil">
+    <div class="container">
         <div class="row">
-            <h1>Bienvenue sur Dolistats !</h1><br>
-            <h2>Vous pouvez accéder, depuis la navbar, au différents menus.</h2><br>
-            <h3>(recherche articles, recherche clients, ...)</h3>
+            </br>
+            <p class="titre">Bienvenue sur Dolistats !</p>
+            <p class="sousTitre"> Votre application web de statistiques.</p>
+            <p>Vous pouvez accéder, depuis la navbar, au différents menus.</br>
+            (recherche articles, recherche clients, ...)</p>
         </div>
     </div>
 </body>

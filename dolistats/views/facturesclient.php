@@ -65,7 +65,7 @@
 			</div>
 			<div class="col-xs-2">
 				<form action="factureClient.php" method="post">				
-					<div class="col-xs-7"> Nom Prénom
+					<div class="col-xs-7">Nom prénom
 					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
                     <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
 				</form>
@@ -75,12 +75,12 @@
     <div class="container ">
 		<div class="row">
             <p class="titre">Historique des factures</p>
-            <p class="sousTitre">du client NOM Prénom</p>
+            <p class="sousTitre">du client <?php echo $nomClient;?> </p>
         </div>
 		
 		<!--Liste des factures-->
         <?php   
-        if(isset($recherche)) {
+        if(isset($resultat)) {
         ?>
         <div class="row">
             <table class="table table-striped">
@@ -95,35 +95,13 @@
                 <tbody>
                 <?php 
                 foreach($resultat as $ligne) {
-                    if($nomClient == 1) {
-                        echo "<tr class=\"accordion\">";
-                            echo "<td>".$ligne['code_client']."</td>";
-                            echo "<td>".$ligne['name']."</td>";
-                            ?>
-                            <form action="index.php" method="post">
-                                <input type="hidden" name="controller" value="Factures">
-                                <input type="hidden" name="action" value="facture">
-                                <td><button type="submit"><i class="fas fa-eye"></i></button></td>                                
-                            </form>
-                            <?php
-                            echo "<td><button class=\"accordion-button\"></button></td>";
-                        echo "</tr>";
-                        echo "<tr class=\"accordion-content\">";
-                        echo "<td></td>";
-                        echo "<td>Numéro de téléphone : ".$ligne['phone']."<br>
-                              Adresse mail : ".$ligne['email']."<br>
-                              Adresse : ".$ligne['address']."<br>
-                              Soumis à la TVA : ".$tva."</td>";
-                    echo "</tr>";
-                    }
+                    
                 }
+        }
                 ?>
                 </tbody>
             </table>
         </div>
-        <?php
-        }
-        ?>
 	</div>
     <script>
         const accordionButtons = document.querySelectorAll('.accordion-button');
