@@ -34,7 +34,6 @@ class PalmaresArticlesController
     }
 
     public function palmares() {
-        //$recherche = htmlspecialchars(HttpHelper::getParam('recherche'));
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
         $resultat = $this->palmaresQuantiteService->getArticles($apiUrl, $apiKey);
@@ -42,7 +41,6 @@ class PalmaresArticlesController
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('resultat', $resultat);
-        //$view->setVar('recherche', $recherche);
         return $view;
     }
 }
