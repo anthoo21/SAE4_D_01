@@ -64,7 +64,7 @@
 			<!--Espace dans la navbar-->
 			</div>
 			<div class="col-xs-2">
-				<form action="rechercheArticle.php" method="post">				
+				<form action="factureClient.php" method="post">				
 					<div class="col-xs-7"> Nom Prénom
 					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
                     <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
