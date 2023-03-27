@@ -27,7 +27,7 @@ class PalmaresArticlesController
     public function index() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
-        $view = new View("views/palmaresArticle");
+        $view = new View("views/palmaresarticle");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         return $view;
