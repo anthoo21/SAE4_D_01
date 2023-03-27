@@ -22,8 +22,12 @@ namespace application;
 use controllers\HomeController;
 use controllers\ArticlesController;
 use controllers\PalmaresArticlesController;
+use controllers\ClientsController;
+use controllers\FacturesController;
 use services\LoginService;
 use services\ArticlesService;
+use services\ClientsService;
+use services\FacturesService;
 use services\PalmaresQuantiteService;
 use yasmf\ComponentFactory;
 use yasmf\NoControllerAvailableForName;
@@ -32,6 +36,8 @@ use yasmf\NoServiceAvailableForName;
 require("services/LoginService.php");
 require("services/ArticlesService.php");
 require("services/PalmaresQuantiteService.php");
+require("services/ClientsService.php");
+require("services/FacturesService.php");
 /**
  *  The controller factory
  */
@@ -42,6 +48,8 @@ class DefaultComponentFactory implements ComponentFactory
     private ?LoginService $loginService = null;
     private ?ArticlesService $articlesService = null;
     private ?PalmaresQuantiteService $palmaresQuantiteService = null;
+    private ?ClientsService $clientsService = null;
+    private ?FacturesService $facturesService = null;
 
     /**
      * @param string $controller_name the name of the controller to instanciate
@@ -53,6 +61,8 @@ class DefaultComponentFactory implements ComponentFactory
             "Home" => $this->buildHomeController(),
             "Articles" => $this->buildArticlesController(),
             "PalmaresArticles" => $this->buildPalmaresArticlesController(),
+            "Clients" => $this->buildClientsController(),
+            "Factures" => $this->buildFacturesController(),
             default => throw new NoControllerAvailableForName($controller_name)
         };
     }
@@ -63,6 +73,8 @@ class DefaultComponentFactory implements ComponentFactory
             "Login" => $this->buildLoginService(),
             "Articles" => $this->buildArticlesService(),
             "PalmaresArticles" => $this->buildPalmaresQuantiteService(),
+            "Clients" => $this->buildClientsService(),
+            "Factures" => $this->buildFacturesService(),
             default => throw new NoServiceAvailableForName($service_name)
         };
     }
@@ -79,7 +91,7 @@ class DefaultComponentFactory implements ComponentFactory
     }
 
     /**
-     * @return LoginService
+     * @return ArticlesService
      */
     private function buildArticlesService(): ArticlesService
     {
@@ -101,6 +113,28 @@ class DefaultComponentFactory implements ComponentFactory
     }
 
 
+    /**
+     * @return ClientsService
+     */
+    private function buildClientsService(): ClientsService
+    {
+        if ($this->clientsService == null) {
+            $this->clientsService = new ClientsService();
+        }
+        return $this->clientsService;
+    }
+
+    /**
+     * @return FacturesService
+     */
+    private function buildFacturesService(): FacturesService
+    {
+        if ($this->facturesService == null) {
+            $this->facturesService = new FacturesService();
+        }
+        return $this->facturesService;
+    }
+
     public function buildHomeController(): HomeController {
         return new HomeController($this->buildLoginService());
     }
@@ -114,5 +148,13 @@ class DefaultComponentFactory implements ComponentFactory
     }
 
     
+
+    public function buildClientsController(): ClientsController {
+        return new ClientsController($this->buildClientsService());
+    }
+
+    public function buildFacturesController(): FacturesController {
+        return new FacturesController($this->buildFacturesService());
+    }
 
 }

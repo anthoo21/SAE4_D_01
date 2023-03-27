@@ -1,0 +1,39 @@
+.accordion-content {
+    display: none;
+    background-color: #f9f9f9;
+  }
+  
+  .accordion-content td {
+    border: none;
+  }
+  
+  .accordion-button {
+    display: block;
+  width: 100%;
+
+  color: #444;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  }
+
+  .accordion-button::after {
+    content: "+";
+    float: right;
+  }
+  
+  .accordion-button.active {
+    background-color: #ccc;
+  }
+  
+  .accordion-button.active::after {
+    content: "-";
+  }
+  
+  .active {
+    display: table-row;
+  }

@@ -21,15 +21,16 @@
         ?>
         <div class="row">
             <form action="index.php" method="post">
-                <input type="text" name="urlUtil" placeholder="Entrez une URL de Dolibarr"/>
+                <input type="text" name="urlUtil" placeholder="Entrez un n° de groupe"/>
                 <input type="hidden" name="controller" value="Home">
                 <input type="hidden" name="action" value="urlRecup">
                 <button type="submit">Valider</button><br/>
             </form>
         </div>
         <div class="row">
-            <p>L'url doit être sous la forme : "http://dolibarr.iut-rodez.fr/G2022-XX/htdocs/api/index.php/"</p>
-            <p>Il vous faut remplacer "XX" par le numéro correspondant</p>
+            <p>Rentrez dans le champ ci-dessus le numéro du groupe correspondant</p>
+            <p>L'url est sous la forme : "http://dolibarr.iut-rodez.fr/G2022-XX/htdocs/api/index.php/"
+                 (XX remplace le numéro du groupe)</p>
         </div>
     </div>
 </body>

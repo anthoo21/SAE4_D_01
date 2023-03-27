@@ -3,21 +3,21 @@
 namespace controllers;
 
 
-use services\ArticlesService;
+use services\ClientsService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
-class ArticlesController
+class ClientsController
 {
 
-    private $articlesService;
+    private $clientsService;
 
     /**
-     * Create and initialize an LoginController object
+     * Create and initialize an ClientsController object
      */
-    public function __construct(ArticlesService $articlesService)
+    public function __construct(ClientsService $clientsService)
     {
-        $this->articlesService = $articlesService;
+        $this->clientsService = $clientsService;
     }
 
     /**
@@ -27,7 +27,7 @@ class ArticlesController
     public function index() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
-        $view = new View("views/recherchearticle");
+        $view = new View("views/rechercheclients");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         return $view;
@@ -37,8 +37,8 @@ class ArticlesController
         $recherche = htmlspecialchars(HttpHelper::getParam('recherche'));
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
-        $resultat = $this->articlesService->getArticles($recherche, $apiUrl, $apiKey);
-        $view = new View("views/recherchearticle");
+        $resultat = $this->clientsService->getClients($recherche, $apiUrl, $apiKey);
+        $view = new View("views/rechercheclients");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('resultat', $resultat);

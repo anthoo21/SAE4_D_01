@@ -29,12 +29,13 @@ class HomeController
     }
 
     public function urlRecup() {
-        $regex = "/^http:\/\/dolibarr\.iut-rodez\.fr\/G2022-\d{1,2}\/htdocs\/api\/index\.php\//";
+        $regex = '/^[1-9]|[1-9][0-9]$/';
         $input = HttpHelper::getParam('urlUtil');
         $error = "";
         if (preg_match($regex, $input)) {
+            $apiUrl = "http://dolibarr.iut-rodez.fr/G2022-".$input."/htdocs/api/index.php/";
             $view = new View("views/connexion");
-            $view->setVar('apiUrl',$input);
+            $view->setVar('apiUrl',$apiUrl);
         } else {
             $view = new View("views/choixUrl");
             $view->setVar('error',$error);
