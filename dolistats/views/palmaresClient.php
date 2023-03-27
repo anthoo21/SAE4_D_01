@@ -76,6 +76,50 @@
 		<div class="row">
             <p class="titre">Palmarès clients</p>
         </div>
+        <!-- Recherche par critères -->
+		<div class="row">
+            <div class="search-box">
+                <form action="palmaresClient.php" method="post">
+                    <div class="col-xs-12 part">
+                        Entrez le nombre de clients :    
+                        <input type="search" name="rechercheNb" id="search-input" placeholder="Nombre de clients" required value="<?php 
+                        if(isset($_POST['rechercheNb'])) {
+                            echo $_POST['rechercheNb'];
+                        } else {
+                            echo '';
+                        }
+                        ?>">
+                    </div>
+                    <div class="col-xs-12 part">
+                        De
+                        <input type="date" name="dateDe" required>
+                        à
+                        <input type="date" name="dateA" required>
+                        <input type="hidden" name="controller" value="palamares">
+                        <button type="submit" class="search-button">Valider</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+		<!--Liste des clients rentables-->
+        <div class="row">
+            <table class="table table-striped">
+                <tr>
+                    <th>Nom</th>
+					<th>Prénom</th>
+                    <th>Chiffre d'affaires</th>
+                </tr>
+                <?php 
+                foreach($client as $ligne) {
+                    echo "<tr>";
+                        echo "<td>".$ligne['nom']."</td>";	   //Vérifier le nom de la variable
+                        echo "<td>".$ligne['prenom']."</td>";  //Vérifier le nom de la variable
+						echo "<td>".$ligne['ca']."</td>";      //Vérifier le nom de la variable
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+        </div>
 	</div>
   </body>
 </html>
