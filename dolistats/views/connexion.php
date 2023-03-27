@@ -32,7 +32,7 @@
 					<div class="row">
 						<!--Identifiant-->
 						<div class="col-xs-2"></div>
-						<div class="col-xs-3 <?php if($login=="") { echo "enRouge";}?> ">
+						<div class="col-xs-3 <?php if(isset($login) && $login == "") { echo "enRouge";}?> ">
 							<h4>Identifiant : </h4>				
 						</div>
 						<div class="col-xs-5">
@@ -43,7 +43,7 @@
 					<div class="row">
 						<!--Mot de passe-->
 						<div class="col-xs-2"></div>
-						<div class="col-xs-3 <?php if($password=="") { echo "enRouge";}?>">
+						<div class="col-xs-3 <?php if(isset($password) && $password == "") { echo "enRouge";}?>">
 							<h4>Mot de passe : </h4>
 						</div>
 						<div class="col-xs-5">

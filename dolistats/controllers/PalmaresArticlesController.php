@@ -27,7 +27,7 @@ class PalmaresArticlesController
     public function index() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
-        $view = new View("views/palmaresarticle");
+        $view = new View("views/palmaresArticle");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         return $view;
@@ -38,7 +38,7 @@ class PalmaresArticlesController
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
         $resultat = $this->palmaresQuantiteService->getArticles($apiUrl, $apiKey);
-        $view = new View("views/palmaresarticle");
+        $view = new View("views/palmaresArticle");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('resultat', $resultat);
