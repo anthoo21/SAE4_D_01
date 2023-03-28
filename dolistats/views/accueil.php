@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
     <link rel="stylesheet" href="../css/styleAccueil.css">
-    <title>Document</title>
+    <title>Dolistats - Accueil</title>
 </head>
 
 <?php 
@@ -67,21 +67,21 @@ if(isset($resultat)) {
                     </div>
                 </form>
 			</div>	
-			<div class="col-xs-5">
+			<div class="col-md-5 col-sm-3 col-xs-3">
 			<!--Espace dans la navbar-->
 			</div>
-			<div class="col-xs-2">
+			<div class="col-md-2 col-sm-4 col-xs-4">
 				<form action="rechercheArticle.php" method="post">				
-					<div class="col-xs-7"> Nom Prénom
+					<div class="col-sm-9 col-xs-12" class="deco"> Nom Prénom
 					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
-                    <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
+                    <div class="col-sm-3 hidden-xs"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
 				</form>
 			</div>	
 		</div>
     </div>
     <div class="container">
         <div class="row">
-            </br>
+            </br></br></br></br></br>
             <p class="titre">Bienvenue sur Dolistats !</p>
             <p class="sousTitre"> Votre application web de statistiques.</p>
             <p>Vous pouvez accéder, depuis la navbar, au différents menus.</br>
