@@ -12,58 +12,9 @@
 	height: 75px;
 }
 
-.logoNav {
-    width: 55px;
-	height: 51px;
-	align-items: center;
-	margin-left: 5px;
-    left: 1279px;
-}
-
 .boutonNavbar {
 	border: none;
 	background: none;
-}
-
-body {
-	background-color : white;
-	font-family: 'Fjord One';
-}
-
-/* Ecran tablette */
-@media (max-width: 1280px) {
-	.titre {
-		margin-top: 10px;
-		font-size:3em;
-	}
-	/* Espacement entre les divs */
-	div {
-		margin-bottom:5px;
-	}
-}
-
-/* Ecran téléphone */
-@media (max-width: 800px) {
-	.titre {
-		margin-top: 10px;
-		font-size:2em;
-	}
-	/* Espacement entre les divs */
-	div {
-		margin-bottom:5px;
-	}
-}
-
-/* Ecran ordinateur */
-@media (min-width: 1281px) {
-	.titre {
-		margin-top: 15px;
-		font-size:5em;
-	}
-	/* Espacement entre les divs */
-	div {
-		margin-bottom:10px;
-	}
 }
 
 /* ACCUEIL */
@@ -73,20 +24,105 @@ body {
 	font-weight: bold;
 }
 
+body {
+	background-color : white;
+	font-family: 'Fjord One';
+}
+
+/* Ecran téléphone */
+@media (max-width: 800px) {
+	.titre {
+		margin-top: 10px;
+		font-size: 2em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:5px;
+	}
+	.logoNav {
+		margin-top: 10px;
+		width: 35px;
+		height: 31px;
+		margin-left: 2px;
+	}
+	.sousTitre {
+		font-size: 1.5em;
+	}
+	p, button {
+		font-size: 0.5em;
+	}
+	.deco {
+		margin-top: 15px;
+	}
+}
+
+/* Ecran tablette */
+@media (max-width: 1100px) {
+	.titre {
+		margin-top: 10px;
+		font-size:3.5em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:5px;
+	}
+	.logoNav {
+		margin-top: 10px;
+		width: 45px;
+		height: 41px;
+		margin-left: 3px;
+	}
+	.sousTitre {
+		font-size: 2em;
+	}
+	p, button {
+		font-size: 1em;
+	}
+	.deco {
+		margin-top: 10px;
+	}
+}
+
+/* Ecran ordinateur */
+@media (min-width: 1101px) {
+	.titre {
+		margin-top: 15px;
+		font-size:5em;
+	}
+	/* Espacement entre les divs */
+	div {
+		margin-bottom:10px;
+	}
+	.logoNav {
+		width: 55px;
+		height: 51px;
+		left: 1279px;
+		margin-left: 5px;
+	}
+	.sousTitre {
+		font-size: 2.5em;
+	}
+	p {
+		font-size: 1.2em;
+	}
+	.deco {
+		margin-top: 10px;
+	}
+}
+
+.logoNav {
+	align-items: center;
+}
+
 .sousTitre {
 	text-align: center;
-	font-size: 2.5em;
 }
   
 .form {
-	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 100%;
-	width: 100%;
 }
 
 p {
-    text-align: center;
-    font-size: 1.2em;
+	text-align: center;
 }
