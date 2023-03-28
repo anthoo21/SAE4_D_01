@@ -73,119 +73,142 @@
         <div class="row">
             <p class="titre">Palmarès Articles</p>
         </div>
-    <!-- Recherche par critères -->
-    <div class="row">
-        <div class="search-box A">
-            <form action="index.php" method="post">
-                <div class="col-xs-12 part">
-                    Entrez le nombre d'articles :
-                    <input class="nb" type="search" name="rechercheNb" id="search-input" required value="<?php
-                                                                                                            if (isset($_POST['rechercheNb'])) {
-                                                                                                                echo $_POST['rechercheNb'];
-                                                                                                            } else {
-                                                                                                                echo '';
-                                                                                                            }
-                                                                                                            ?>">
-                    <input type="radio" id="quantite" name="choix"> <label for="quantite">En quantité</label>
-                    <input type="radio" id="ca" name="choix"> <label for="ca">En chiffre d'affaires</label>
-                </div>
-                <div class="col-xs-12 part">
-                    De
-                    <input type="date" name="dateDe" required>
-                    à
-                    <input type="date" name="dateA" required>
-                    <input type="hidden" name="controller" value="palamares">
-                    <button type="submit" class="search-button">Valider</span></button>
-                </div>
-            </form>
+        <!-- Recherche par critères -->
+        <div class="row">
+            <div class="search-box A">
+                <form action="index.php" method="post">
+                    <div class="col-xs-12 part">
+                        Entrez le nombre d'articles :
+                        <input class="nb" type="search" name="rechercheNb" id="search-input" required value="<?php
+                                                                                                                if (isset($_POST['rechercheNb'])) {
+                                                                                                                    echo $_POST['rechercheNb'];
+                                                                                                                } else {
+                                                                                                                    echo '';
+                                                                                                                }
+                                                                                                                ?>">
+                        <input type="radio" id="quantite" name="choix"> <label for="quantite">En quantité</label>
+                        <input type="radio" id="ca" name="choix"> <label for="ca">En chiffre d'affaires</label>
+                    </div>
+                    <div class="col-xs-12 part">
+                        De
+                        <input type="date" name="dateDe" required>
+                        à
+                        <input type="date" name="dateA" required>
+                        <input type="hidden" name="controller" value="palamares">
+                        <button type="submit" class="search-button">Valider</span></button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <!--Liste des clients rentables-->
-    <div class="row">
-        <table class="table table-striped">
-            <tr>
-                <th>Réf.</th>
-                <th>Désignation</th>
-                <th>Chiffre d'affaires</th>
-            </tr>
-            <?php/*
-            // foreach($client as $ligne) {
-            //     echo "<tr>";
-            //         echo "<td>".$ligne['ref']."</td>";	   //Vérifier le nom de la variable
-            //         echo "<td>".$ligne['label']."</td>";  
-            // 		echo "<td>".$ligne['ca']."</td>";      //Vérifier le nom de la variable
-            //     echo "</tr>";
-            // } */
-            ?>
-        </table>
-    </div>
+        <!--Liste des clients rentables-->
+        <div class="row">
+            <table class="table table-striped">
+                <tr>
+                    <th>Réf.</th>
+                    <th>Désignation</th>
+                    <th>Chiffre d'affaires</th>
+                </tr>
+                <?php
+                // foreach($client as $ligne) {
+                //     echo "<tr>";
+                //         echo "<td>".$ligne['ref']."</td>";	   //Vérifier le nom de la variable
+                //         echo "<td>".$ligne['label']."</td>";  
+                // 		echo "<td>".$ligne['ca']."</td>";      //Vérifier le nom de la variable
+                //     echo "</tr>";
+                // } 
+                ?>
+            </table>
+        </div>
         <form action="index.php" method="post" class="form">
-        <input type="hidden" name="controller" value="PalmaresArticles">
-        <input type="hidden" name="action" value="palmares">
-        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
-        <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
-        <button type="submit" class="button submit"></i></button>
-    </form>
+            <input type="hidden" name="controller" value="PalmaresArticles">
+            <input type="hidden" name="action" value="palmares">
+            <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+            <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
+            <button type="submit" class="button submit"></i></button>
+        </form>
+        <div class="row">
+            <div class="col-xs-3 "></div>
+            <div class="col-xs-6">
+                <h1>Exemple Diagramme Barres</h1>
+                <canvas id="myChart" width="400" height="225"></canvas>
+            </div>
+        </div>
         <?php
 
-//var_dump($resultat);
-$Donneequantite = [];
-$Donneelibelle = [];
-//$ligne
-foreach ($resultat as $ligne) {
-    foreach ($ligne['lines'] as $wanted) {
-        $wanted['qty'].',';
-        $wanted['libelle'];
-        //echo $wanted['ref']."<br>";
-    }
-}
-var_dump($Donneequantite);
-?> 
-<div class="row">
-    <div class="col-xs-3 "></div>
-    <div class="col-xs-6">
-        <h1>Exemple Diagramme Barres</h1>
-        <canvas id="myChart" width="400" height="225"></canvas>
-    </div>
-</div>
+        //var_dump($resultat);
+        $Donnees = [];
+        //$Donnees1 = [];
+        //$Donnees2 = [];
+        //$Donnees['Quantite'] = '';
+        $ligneLibelle = "";
+        $ligneQuantite = "";
+        $LeTitre = "Produits le plus vendue en quantité";
+        foreach ($resultat as $ligne) {
+            foreach ($ligne['lines'] as $wanted) {
+                //$Donnees1[] .= $wanted['libelle'];
+                //$Donnees2[] .= $wanted['qty'];
+                $Donnees[$wanted['libelle']] = '';
+                $Donnees[$wanted['libelle']] .= $wanted['qty'];
+                //echo $wanted['ref']."<br>";
+            }
+        }
+        /*
+        foreach ($Donnees1 as $donnees) {
+            if ($ligneLibelle != "") $ligneLibelle .= ",";
+            $ligneLibelle .= '"' . $donnees . '"';
+            if (str_contains($ligneLibelle,$donnees)) {
+                substr($ligneLibelle,strlen($donnees),-strlen($donnees));
+            } 
+        }
+        foreach ($Donnees2 as $donnees) {
+            if ($ligneQuantite != "") $ligneQuantite .= ",";
+            $ligneQuantite .= '"' . $donnees . '"';
+        } */
 
-<?php 
-    $LeTitre = "Produits le plus vendue en quantité"
-?>
+        foreach($Donnees as $label=>$quantite) {
+            if ($ligneLibelle!="") $ligneLibelle.=",";
+            $ligneLibelle.='"'.$label.'"' ;
+            
+            if ($ligneQuantite!="") $ligneQuantite.=",";
+            $ligneQuantite.='"'.$quantite.'"' ;
+        }
+        $ligneLibelle = "[" . $ligneLibelle . "]";  // Ajout des crochets
+        $ligneQuantite = "[" . $ligneQuantite . "]";  // Ajout des crochets
+        var_dump($ligneLibelle);
+        var_dump($ligneQuantite);
 
-<script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
-<script>
-// setup 
-const data = {
-    labels: <?php echo $Donneelibelle; ?>, // TODO tous les libelles des produits
-    
-    datasets: [{
-        label: '<?php echo $LeTitre; ?>', // TODO le titre
-        data: "<?php echo $Donneequantite; ?>", // TODO les quantités
-        backgroundColor:  Utils.transparentize(Utils.CHART_COLORS.red, 0.5), // TODO le style
-   
-        borderWidth: 1
-  }]
-};
+        ?>
 
+        <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
+        <script>
+            // setup 
+            const data = {
+                labels: <?php echo $ligneLibelle; ?>, // TODO tous les libelles des produits
 
-console.log(data) ;
+                datasets: [{
+                    label: '<?php echo $LeTitre; ?>', // TODO le titre
+                    data: "<?php echo $ligneQuantite; ?>", // TODO les quantités
+                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5), // TODO le style
 
-/////////////////////////////////////////////////////////////////////
-// Exemple 1 
-const config1 = {
-  type: 'bar',
-  data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-};	
-const myChart = new Chart(document.getElementById('myChart'),config1);
-</script> 
+                    borderWidth: 1
+                }]
+            };
+            console.log(data);
+            /////////////////////////////////////////////////////////////////////
+            // Exemple 1 
+            const config1 = {
+                type: 'pie',
+                data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+            const myChart = new Chart(document.getElementById('myChart'), config1);
+        </script>
     </div>
 </body>
 
