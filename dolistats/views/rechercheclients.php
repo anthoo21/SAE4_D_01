@@ -119,6 +119,7 @@
                     }
                     if($ligne['client'] == 1) {
                         $nomClient = $ligne['name'];
+                        $idClient = $ligne['ref'];
                         echo "<tr class=\"accordion\">";
                             echo "<td>".$ligne['code_client']."</td>";
                             echo "<td>".$nomClient."</td>";
@@ -126,6 +127,7 @@
                             <form action="index.php" method="post">
                                 <input type="hidden" name="controller" value="Factures">
                                 <input type="hidden" name="nomClient" value="<?php echo $nomClient;?>">
+                                <input type="hidden" name="idClient" value="<?php echo $idClient;?>">
                                 <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                                 <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                                 <td><button type="submit"><i class="fas fa-eye"></i></button></td>                                
