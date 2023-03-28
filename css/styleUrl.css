@@ -35,7 +35,6 @@ body {
 }
 .sousTitre {
 	text-align: center;
-	font-size: 1.2em;
 }
 
 /* Ecran tablette */
@@ -48,6 +47,14 @@ body {
 		margin-top: 10px;
 		font-size:3em;
 	}
+  input[type="text"] {
+    width: 250px;
+    font-size: 14px;
+    margin-left: 19%;
+  }
+  .sousTitre {
+    font-size: 1em;
+  }
 }
 
 /* Ecran téléphone */
@@ -58,8 +65,17 @@ body {
 	}
 	.titre {
 		margin-top: 10px;
-		font-size:2em;
+		font-size:2.2em;
 	}
+  .sousTitre {
+    text-align: center;
+    font-size: 1em;
+  }
+  input[type="text"] {
+    width: 200px;
+    font-size: 12px;
+    margin-left: 17%;
+  }
 }
 
 /* Ecran ordinateur */
@@ -72,6 +88,15 @@ body {
 		margin-top: 15px;
 		font-size:5em;
 	}
+  .sousTitre {
+    font-size: 1.2em;
+  }
+  /* style de la zone de texte */
+  input[type="text"] {
+    width: 300px;
+    font-size: 16px;
+    margin-left: 22%;
+  }
 }
 
 div {
@@ -79,10 +104,7 @@ div {
 }
   /* style de la zone de texte */
   input[type="text"] {
-    width: 300px;
-    font-size: 16px;
     border: none;
-    margin-left: 20%;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0px 0px 5px #ccc;
