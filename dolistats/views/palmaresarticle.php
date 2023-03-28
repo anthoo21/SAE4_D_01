@@ -143,12 +143,20 @@
         $ligneLibelle = "";
         $ligneQuantite = "";
         $LeTitre = "Produits le plus vendue en quantité";
+        $sommeqty = 0;
         foreach ($resultat as $ligne) {
             foreach ($ligne['lines'] as $wanted) {
                 //$Donnees1[] .= $wanted['libelle'];
                 //$Donnees2[] .= $wanted['qty'];
                 $Donnees[$wanted['libelle']] = '';
+                var_dump(str_contains($Donnees[$wanted['libelle']],$wanted['libelle']));
+                var_dump($Donnees[$wanted['libelle']]);
+                var_dump($wanted['libelle']);
+                if (in_array($wanted['libelle'],array($Donnees[$wanted['libelle']]))) {
+                    $Donnees[$wanted['libelle']] .= $wanted['qty'] + $wanted['qty'];
+                }
                 $Donnees[$wanted['libelle']] .= $wanted['qty'];
+                var_dump($Donnees);
                 //echo $wanted['ref']."<br>";
             }
         }
@@ -176,11 +184,12 @@
         $ligneQuantite = "[" . $ligneQuantite . "]";  // Ajout des crochets
         var_dump($ligneLibelle);
         var_dump($ligneQuantite);
-
+        // Todo pk je trouve pas le js
         ?>
 
         <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
         <script>
+            document.write(5 + 6); // pour tester le js
             // setup 
             const data = {
                 labels: <?php echo $ligneLibelle; ?>, // TODO tous les libelles des produits
