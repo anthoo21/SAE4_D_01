@@ -6,7 +6,7 @@ namespace services;
 class FacturesService {
 
     public static function getFacturesClient($apiUrl, $apiKey) {
-        $apiUrl = $apiUrl."shipments?sortfield=t.rowid&sortorder=ASC&limit=100";
+        $apiUrl = $apiUrl."invoices?sortfield=t.rowid&sortorder=ASC&limit=100";
         $curl = curl_init();
         
         curl_setopt($curl, CURLOPT_URL, $apiUrl);				// Url de l'API à appeler

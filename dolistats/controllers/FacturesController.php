@@ -28,12 +28,14 @@ class FacturesController
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
         $nomClient = HttpHelper::getParam('nomClient');
+        $idClient = HttpHelper::getParam('idClient');
         $resultat = $this->facturesService->getFacturesClient($apiUrl, $apiKey);
         $view = new View("views/facturesclient");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('nomClient', $nomClient);
         $view->setVar('resultat', $resultat);
+        $view->setVar('idClient', $idClient);
         return $view;
     }
 

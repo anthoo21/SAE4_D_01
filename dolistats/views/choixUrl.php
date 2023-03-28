@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
     <link rel="stylesheet" href="../css/styleUrl.css"> 
-    <title>Document</title>
+    <title>Dolistats</title>
 </head>
 <body>
     <!--Image accueil-->
@@ -19,16 +19,19 @@
     </div>
     <div class="container menu">
         
-        <div></br></br></br></div>
+        <div></div>
         <?php 
         if(isset($error)) {
             ?> 
-            <div class="row">
+            <div>
                 <p class="enRouge">URL Non valide</p>
             </div>
             <?php
         }
         ?>
+        <div class="titre">Dolistats</div>
+        <div class="sousTitre">Connexion à votre Dolibarr</div>
+        <div class="row"></br></div>
         <div class="row">
             <form action="index.php" method="post">
                 <input type="text" name="urlUtil" placeholder="Entrez une URL de Dolibarr"/>
@@ -38,9 +41,10 @@
             </form>
         </div>
         <div class="row url">
-            <p>L'url doit être sous la forme : "http://dolibarr.iut-rodez.fr/G2022-XX/htdocs/api/index.php/"</p>
+            </br>
+            <i>L'url doit être sous la forme : "http://dolibarr.iut-rodez.fr/G2022-XX/htdocs/api/index.php/"</i>
         </div>
-        <div></br></br></br></div>
+        <div class="row"></br></div>
     </div>
 </body>
 </html
