@@ -140,6 +140,8 @@
                         echo "<td>Numéro de téléphone : ".$ligne['phone']."<br>
                               Adresse mail : ".$ligne['email']."<br>
                               Adresse : ".$ligne['address']."<br>
+                              N° de SIREN :".$ligne['idprof1']."<br>
+                              N° de SIRET :".$ligne['idprof2']."<br>
                               Soumis à la TVA : ".$tva."</td>";
                         echo "<td></td>";
                         echo "<td></td>";
