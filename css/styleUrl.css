@@ -5,6 +5,11 @@
 /* |                                 PAGE URL                                 |*/
 /* |__________________________________________________________________________|*/
 
+body {
+  background-color : white;
+  font-family: 'Fjord One';
+  color : white;
+}
 
 .logo {
   width: 130px;
@@ -16,54 +21,81 @@
 }
 
 .menu {
-  top: center;
-
+  top : center;
   background-color: #263C5B;
   box-shadow: 7px 4px 7px rgba(0, 0, 0, 0.25);
+}
+
+/* "Connexion à votre Dolistats" */
+.titre {
+  font-family:'Kanit';
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.sousTitre {
+	text-align: center;
+	font-size: 1.2em;
 }
 
 /* Ecran tablette */
 @media (max-width: 1280px) {
 	.menu {
-		width: 559px;
-    margin-left: 15%;
+		width: 559px; 
+		margin-left: 15%;
+	}
+	.titre {
+		margin-top: 10px;
+		font-size:3em;
 	}
 }
 
 /* Ecran téléphone */
 @media (max-width: 800px) {
 	.menu {
-		width: 459px;
-    margin-left: 3%;
+		width: 459px; 
+		margin-left: 3%;
+	}
+	.titre {
+		margin-top: 10px;
+		font-size:2em;
 	}
 }
 
 /* Ecran ordinateur */
 @media (min-width: 1281px) {
 	.menu {
-		width: 659px;
-    margin-left: 30%;
+		width: 700px; 
+    margin-left: 27%;
+	}
+	.titre {
+		margin-top: 15px;
+		font-size:5em;
 	}
 }
 
+div {
+  margin-bottom: 5px;
+}
   /* style de la zone de texte */
   input[type="text"] {
-    padding: 10px;
+    width: 300px;
     font-size: 16px;
     border: none;
+    margin-left: 20%;
+    padding: 10px;
     border-radius: 5px;
     box-shadow: 0px 0px 5px #ccc;
-    margin-right: 10px;
   }
 
   /* style du bouton */
   button[type="submit"] {
     background-color: #4ea9bd;
-    color: white;
-    padding: 10px;
     font-size: 16px;
+    color : white;
     border: none;
     border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
   }
 
@@ -72,14 +104,5 @@
 }
 
 .url {
-  display: flex;
   text-align: center;
-  color : white;
-}
-
-form {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  padding: 10px;
 }
