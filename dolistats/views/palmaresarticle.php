@@ -186,9 +186,10 @@
         var_dump($ligneQuantite);
         // Todo pk je trouve pas le js
         ?>
-
-        <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
+    </div>  
+    <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
         <script>
+            console.log("test");
             document.write(5 + 6); // pour tester le js
             // setup 
             const data = {
@@ -196,8 +197,8 @@
 
                 datasets: [{
                     label: '<?php echo $LeTitre; ?>', // TODO le titre
-                    data: "<?php echo $ligneQuantite; ?>", // TODO les quantités
-                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5), // TODO le style
+                    data: <?php echo $ligneQuantite; ?>, // TODO les quantités
+                    backgroundColor: 'rgb(255, 99, 132)', // TODO le style
 
                     borderWidth: 1
                 }]
@@ -206,7 +207,7 @@
             /////////////////////////////////////////////////////////////////////
             // Exemple 1 
             const config1 = {
-                type: 'pie',
+                type: 'bar',
                 data,
                 options: {
                     scales: {
@@ -218,7 +219,6 @@
             };
             const myChart = new Chart(document.getElementById('myChart'), config1);
         </script>
-    </div>
 </body>
 
 </html>
