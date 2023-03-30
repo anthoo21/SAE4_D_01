@@ -135,44 +135,20 @@
         </div>
         <?php
 
-        //var_dump($resultat);
         $Donnees = [];
-        //$Donnees1 = [];
-        //$Donnees2 = [];
-        //$Donnees['Quantite'] = '';
         $ligneLibelle = "";
         $ligneQuantite = "";
         $LeTitre = "Produits le plus vendue en quantité";
         $sommeqty = 0;
         foreach ($resultat as $ligne) {
             foreach ($ligne['lines'] as $wanted) {
-                //$Donnees1[] .= $wanted['libelle'];
-                //$Donnees2[] .= $wanted['qty'];
-                $Donnees[$wanted['libelle']] = '';
-                var_dump(str_contains($Donnees[$wanted['libelle']],$wanted['libelle']));
-                var_dump($Donnees[$wanted['libelle']]);
-                var_dump($wanted['libelle']);
-                if (in_array($wanted['libelle'],array($Donnees[$wanted['libelle']]))) {
-                    $Donnees[$wanted['libelle']] .= $wanted['qty'] + $wanted['qty'];
+                if (array_key_exists($wanted['libelle'], $Donnees)) {
+                    $Donnees[$wanted['libelle']] = $Donnees[$wanted['libelle']] + $wanted['qty'];
+                } else {
+                    $Donnees[$wanted['libelle']] = $wanted['qty'];
                 }
-                $Donnees[$wanted['libelle']] .= $wanted['qty'];
-                var_dump($Donnees);
-                //echo $wanted['ref']."<br>";
             }
         }
-        /*
-        foreach ($Donnees1 as $donnees) {
-            if ($ligneLibelle != "") $ligneLibelle .= ",";
-            $ligneLibelle .= '"' . $donnees . '"';
-            if (str_contains($ligneLibelle,$donnees)) {
-                substr($ligneLibelle,strlen($donnees),-strlen($donnees));
-            } 
-        }
-        foreach ($Donnees2 as $donnees) {
-            if ($ligneQuantite != "") $ligneQuantite .= ",";
-            $ligneQuantite .= '"' . $donnees . '"';
-        } */
-
         foreach($Donnees as $label=>$quantite) {
             if ($ligneLibelle!="") $ligneLibelle.=",";
             $ligneLibelle.='"'.$label.'"' ;
@@ -182,30 +158,24 @@
         }
         $ligneLibelle = "[" . $ligneLibelle . "]";  // Ajout des crochets
         $ligneQuantite = "[" . $ligneQuantite . "]";  // Ajout des crochets
-        var_dump($ligneLibelle);
-        var_dump($ligneQuantite);
-        // Todo pk je trouve pas le js
         ?>
     </div>  
     <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
         <script>
-            console.log("test");
-            document.write(5 + 6); // pour tester le js
             // setup 
             const data = {
-                labels: <?php echo $ligneLibelle; ?>, // TODO tous les libelles des produits
+                labels: <?php echo $ligneLibelle; ?>, 
 
                 datasets: [{
-                    label: '<?php echo $LeTitre; ?>', // TODO le titre
-                    data: <?php echo $ligneQuantite; ?>, // TODO les quantités
+                    label: '<?php echo $LeTitre; ?>', 
+                    data: <?php echo $ligneQuantite; ?>, 
                     backgroundColor: 'rgb(255, 99, 132)', // TODO le style
 
                     borderWidth: 1
                 }]
             };
             console.log(data);
-            /////////////////////////////////////////////////////////////////////
-            // Exemple 1 
+
             const config1 = {
                 type: 'bar',
                 data,
