@@ -28,14 +28,14 @@ use services\LoginService;
 use services\ArticlesService;
 use services\ClientsService;
 use services\FacturesService;
-use services\PalmaresQuantiteService;
+use services\PalmaresArticlesService;
 use yasmf\ComponentFactory;
 use yasmf\NoControllerAvailableForName;
 use yasmf\NoServiceAvailableForName;
 
 require("services/LoginService.php");
 require("services/ArticlesService.php");
-require("services/PalmaresQuantiteService.php");
+require("services/PalmaresArticlesService.php");
 require("services/ClientsService.php");
 require("services/FacturesService.php");
 /**
@@ -47,9 +47,10 @@ class DefaultComponentFactory implements ComponentFactory
 
     private ?LoginService $loginService = null;
     private ?ArticlesService $articlesService = null;
-    private ?PalmaresQuantiteService $palmaresQuantiteService = null;
+    private ?PalmaresArticlesService $palmaresArticlesService = null;
     private ?ClientsService $clientsService = null;
     private ?FacturesService $facturesService = null;
+    private ?chiffreaffaireservice $chiffreaffaireservice = null;
 
     /**
      * @param string $controller_name the name of the controller to instanciate
@@ -63,6 +64,7 @@ class DefaultComponentFactory implements ComponentFactory
             "PalmaresArticles" => $this->buildPalmaresArticlesController(),
             "Clients" => $this->buildClientsController(),
             "Factures" => $this->buildFacturesController(),
+            "chiffreaffaire" => $this->buildChiffreAffaireController(),
             default => throw new NoControllerAvailableForName($controller_name)
         };
     }
@@ -72,9 +74,10 @@ class DefaultComponentFactory implements ComponentFactory
         return match($service_name) {
             "Login" => $this->buildLoginService(),
             "Articles" => $this->buildArticlesService(),
-            "PalmaresArticles" => $this->buildPalmaresQuantiteService(),
+            "PalmaresArticles" => $this->buildPalmaresArticlesService(),
             "Clients" => $this->buildClientsService(),
             "Factures" => $this->buildFacturesService(),
+            "chiffreaffaire" => $this->buildChiffreAffaireController(),
             default => throw new NoServiceAvailableForName($service_name)
         };
     }
@@ -104,12 +107,12 @@ class DefaultComponentFactory implements ComponentFactory
     /**
      * @return LoginService
      */
-    private function buildPalmaresQuantiteService(): PalmaresQuantiteService
+    private function buildPalmaresArticlesService(): PalmaresArticlesService
     {
-        if ($this->palmaresQuantiteService == null) {
-            $this->palmaresQuantiteService = new PalmaresQuantiteService();
+        if ($this->palmaresArticlesService == null) {
+            $this->palmaresArticlesService = new PalmaresArticlesService();
         }
-        return $this->palmaresQuantiteService;
+        return $this->palmaresArticlesService;
     }
 
 
@@ -135,6 +138,16 @@ class DefaultComponentFactory implements ComponentFactory
         return $this->facturesService;
     }
 
+    /**
+     * @return chiffreaffaireservice
+     */
+    private function buildChiffreAffaireService(): chiffreaffaireservice
+    {
+        if ($this->chiffreaffaireservice == null) {
+            $this->chiffreaffaireservice = new chiffreaffaireservice();
+        }   
+    }
+
     public function buildHomeController(): HomeController {
         return new HomeController($this->buildLoginService());
     }
@@ -144,7 +157,7 @@ class DefaultComponentFactory implements ComponentFactory
     }
 
     public function buildPalmaresArticlesController(): PalmaresArticlesController {
-        return new PalmaresArticlesController($this->buildPalmaresQuantiteService());
+        return new PalmaresArticlesController($this->buildPalmaresArticlesService());
     }
 
     
@@ -155,6 +168,10 @@ class DefaultComponentFactory implements ComponentFactory
 
     public function buildFacturesController(): FacturesController {
         return new FacturesController($this->buildFacturesService());
+    }
+
+    public function buildChiffreAffaireController(): chiffreaffairecontroller {
+        return new chiffreaffairecontroller($this->buildChiffreAffaireService());
     }
 
 }
