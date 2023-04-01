@@ -87,8 +87,8 @@
                                                                                                                 echo '';
                                                                                                             }
                                                                                                             ?>">
-                    <input type="radio" id="quantite" name="choix"> <label for="quantite">En quantité</label>
-                    <input type="radio" id="ca" name="choix"> <label for="ca">En chiffre d'affaires</label>
+                    <input type="radio" id="quantite" name="choixQ"> <label for="quantite">En quantité</label>
+                    <input type="radio" id="ca" name="choixC"> <label for="ca">En chiffre d'affaires</label>
                 </div>
                 <div class="col-xs-12 part">
                     De
@@ -99,116 +99,130 @@
                     <input type="hidden" name="action" value="palmares">
                     <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
                     <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
-                    <button type="submit" class="search-button">Valider</span></button>
+                    <button type="submit" name="valider" class="search-button">Valider</span></button>
                 </div>
             </form>
         </div>
     </div>
-    <!--Liste des clients rentables-->
-    <div class="row">
-        <table class="table table-striped">
-            <tr>
-                <th>Réf.</th>
-                <th>Désignation</th>
-                <th>Chiffre d'affaires</th>
-            </tr>
-            <?php /*
-                foreach($client as $ligne) {
-                    echo "<tr>";
-                        echo "<td>".$ligne['ref']."</td>";	   //Vérifier le nom de la variable
-                        echo "<td>".$ligne['label']."</td>";  
-						echo "<td>".$ligne['ca']."</td>";      //Vérifier le nom de la variable
-                    echo "</tr>";
-                } */
-            ?>
-        </table>
-    </div>
-    <div class="row">
-        <div class="col-xs-3 "></div>
-        <div class="col-xs-6">
-            <h1>Produits le plus vendue en quantité</h1>
-            <canvas id="myChart" width="400" height="225"></canvas>
-        </div>
-    </div>
-    <?php
-
-    $Donnees = [];
-    $ligneLibelle = "";
-    $ligneQuantite = "";
-    $LeTitre = "Quantité de produits";
-    date_default_timezone_set('Europe/Paris');
-    foreach ($resultat as $ligne) {
-        $timestamp = $ligne['date_valid']; // renvoie un timestamp
-        $date = date('Y-m-d', $timestamp); // format date bd et input date diffétents
-        // Dans l'intervalle de date
-        if ($date >= $_POST['dateDe'] && $date <= $_POST['dateA']) {
-            foreach ($ligne['lines'] as $wanted) {
-                // Somme des quantités
-                if (array_key_exists($wanted['libelle'], $Donnees)) {
-                    $Donnees[$wanted['libelle']] = $Donnees[$wanted['libelle']] + $wanted['qty'];
-                } else {
-                    $Donnees[$wanted['libelle']] = $wanted['qty'];
+    <?php if (isset($_POST['valider']) && isset($_POST['choixQ']) || isset($_POST['choixC'])) {
+        $Donnees = []; // une hashmap, clef libelle et valeur CA ou quantité du produit
+        $Ref = []; // une hashmap, clef ref et valeur CA ou quantité du produit
+        $ligneLibelle = "";
+        $ligneQuantite = "";
+        $LeTitreQ = "Quantité de produits";
+        $LeTitreCA = "Euros obtenue";
+        date_default_timezone_set('Europe/Paris');
+        foreach ($resultat as $ligne) {
+            $timestamp = $ligne['date_valid']; // renvoie un timestamp
+            $date = date('Y-m-d', $timestamp); // format date bd et input date diffétents
+            // Dans l'intervalle de date
+            if ($date >= $_POST['dateDe'] && $date <= $_POST['dateA']) {
+                foreach ($ligne['lines'] as $wanted) {
+                    if (isset($_POST['choixQ'])) {
+                        // Somme des quantités
+                        if (array_key_exists($wanted['libelle'], $Donnees)) {
+                            $Donnees[$wanted['libelle']] = $Donnees[$wanted['libelle']] + $wanted['qty'];
+                            $Ref[$wanted['ref']] = $Ref[$wanted['ref']] + $wanted['qty'];
+                        } else {
+                            $Donnees[$wanted['libelle']] = $wanted['qty'];
+                            $Ref[$wanted['ref']] = $wanted['qty'];
+                        }
+                    } else {
+                        // Somme CA
+                        if (array_key_exists($wanted['libelle'], $Donnees)) {
+                            $Donnees[$wanted['libelle']] = $Donnees[$wanted['libelle']] + $wanted['price'] * $wanted['qty'];
+                            $Ref[$wanted['ref']] = $Ref[$wanted['ref']] + $wanted['price'] * $wanted['qty'];
+                        } else {
+                            $Donnees[$wanted['libelle']] = $wanted['price'] * $wanted['qty'];
+                            $Ref[$wanted['ref']] = $wanted['price'] * $wanted['qty'];
+                        }
+                    }
                 }
             }
         }
-    }
-    /* Top , 
-        TODO gérer qaund c'est 10 et qu'il y a pas 10 produit (le break)
+        /* Top , 
+        TODO gérer quand c'est 10 et qu'il y a pas 10 produit (le break)
             nb négatif
-            0 affiche le graph mais se passe rien
+            0 affiche le graph mais se passe rien, message ? 
         */
-    if (isset(($_POST['rechercheNb']))) {
-        while (count($Donnees) != $_POST['rechercheNb']) {
+        while (count($Donnees) != $_POST['rechercheNb']) { // && count donnees >= 0 ? 
             if (count($Donnees) == 0) {
                 break;
             }
             // On cherche le min
-            $min = array_search(min($Donnees), $Donnees);
+            $min1 = array_search(min($Donnees), $Donnees);
+            $min2 = array_search(min($Ref), $Ref);
             // On supprime le min des données
-            unset($Donnees[$min]);
+            unset($Donnees[$min1]);
+            unset($Ref[$min2]);
         }
-    }
-    // Mise en forme
-    foreach ($Donnees as $label => $quantite) {
-        if ($ligneLibelle != "") $ligneLibelle .= ",";
-        $ligneLibelle .= '"' . $label . '"';
+        // Affichage sous forme de liste
+        echo "<div class=\"row\">";
+        echo "<table class=\"table table-striped\">";
+        echo  "<tr>
+                <th>Réf.</th>
+                <th>Désignation</th>
+                <th>Chiffre d affaires</th>
+                </tr>";
+        $compteKeys = 0;
+        foreach ($Donnees as $label => $quantite) {
+            if ($ligneLibelle != "") $ligneLibelle .= ",";// Mise en forme graphique
+            $ligneLibelle .= '"' . $label . '"';
 
-        if ($ligneQuantite != "") $ligneQuantite .= ",";
-        $ligneQuantite .= '"' . $quantite . '"';
-    }
-    $ligneLibelle = "[" . $ligneLibelle . "]";  // Ajout des crochets
-    $ligneQuantite = "[" . $ligneQuantite . "]";  // Ajout des crochets
+            if ($ligneQuantite != "") $ligneQuantite .= ",";// Mise en forme graphique
+            $ligneQuantite .= '"' . $quantite . '"';
+
+            // Affichage sous forme de liste
+            $keyRef = array_keys($Ref);
+            echo "<tr>";
+            echo "<td>" . $keyRef[$compteKeys] . "</td>"; 
+            $compteKeys ++;
+            echo "<td>" . $label . "</td>";
+            echo "<td>" . $quantite . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        echo "<canvas id=\"myChart\" width=\"400\" height=\"225\"></canvas>";
+        echo "</div>";
+        $ligneLibelle = "[" . $ligneLibelle . "]";  // Ajout des crochets
+        $ligneQuantite = "[" . $ligneQuantite . "]";  // Ajout des crochets 
     ?>
-    </div>
-    <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
-    <script>
-        // setup 
-        const data = {
-            labels: <?php echo $ligneLibelle; ?>,
+        </div>
+        <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
+        <script>
+            // setup 
+            const data = {
+                labels: <?php echo $ligneLibelle; ?>,
 
-            datasets: [{
-                label: '<?php echo $LeTitre; ?>',
-                data: <?php echo $ligneQuantite; ?>,
-                backgroundColor: 'rgb(255, 99, 132)', // TODO le style
+                datasets: [{
+                    label: '<?php if (isset($_POST['choixQ'])) {
+                                echo $LeTitreQ;
+                            } else {
+                                echo $LeTitreCA;
+                            }
+                            ?>',
+                    data: <?php echo $ligneQuantite; ?>,
+                    backgroundColor: 'rgb(255, 99, 132)', // TODO le style
 
-                borderWidth: 1
-            }]
-        };
-        console.log(data);
+                    borderWidth: 1
+                }]
+            };
+            console.log(data);
 
-        const config1 = {
-            type: 'bar',
-            data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+            const config1 = {
+                type: 'bar',
+                data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        };
-        const myChart = new Chart(document.getElementById('myChart'), config1);
-    </script>
+            };
+            const myChart = new Chart(document.getElementById('myChart'), config1);
+        </script>
+    <?php } ?>
 </body>
 
 </html>
