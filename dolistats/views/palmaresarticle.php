@@ -156,6 +156,9 @@
             unset($Donnees[$min1]);
             unset($Ref[$min2]);
         }
+        // Ordre décroissant
+        arsort($Donnees);
+        arsort($Ref); 
         // Affichage sous forme de liste
         echo "<div class=\"row\">";
         echo "<table class=\"table table-striped\">";
