@@ -3,21 +3,21 @@
 namespace controllers;
 
 
-use services\PalmaresQuantiteService;
+use services\PalmaresArticlesService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
 class PalmaresArticlesController
 {
 
-    private $palmaresQuantiteService;
+    private $palmaresArticlesService;
 
     /**
      * Create and initialize an LoginController object
      */
-    public function __construct(PalmaresQuantiteService $palmaresQuantiteService)
+    public function __construct(PalmaresArticlesService $palmaresArticlesService)
     {
-        $this->palmaresQuantiteService = $palmaresQuantiteService;
+        $this->palmaresArticlesService = $palmaresArticlesService;
     }
 
     /**
@@ -36,8 +36,8 @@ class PalmaresArticlesController
     public function palmares() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
-        $resultat = $this->palmaresQuantiteService->getArticles($apiUrl, $apiKey);
-        $view = new View("views/palmaresArticle");
+        $resultat = $this->palmaresArticlesService->getArticles($apiUrl, $apiKey);
+        $view = new View("views/palmaresarticle");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('resultat', $resultat);
