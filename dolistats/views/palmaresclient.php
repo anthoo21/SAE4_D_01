@@ -41,7 +41,7 @@
                 </form>
                 <form action="index.php" method="post">
                     <div class="col-xs-2">
-                        <input type="hidden" name="controller" value="PalmaresClients">
+                        <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" alt="logo palmares client"></button>
@@ -92,7 +92,10 @@
                         <input type="date" name="dateDe" required>
                         à
                         <input type="date" name="dateA" required>
-                        <input type="hidden" name="controller" value="palamares">
+                        <input type="hidden" name="controller" value="palmaresClient">
+                        <input type="hidden" name="action" value="palmares">
+                        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+                        <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="search-button">Valider</span></button>
                     </div>
                 </form>
