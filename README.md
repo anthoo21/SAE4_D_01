@@ -29,7 +29,7 @@ Sprint 3
 # Définition de fini
 
 1. Les tests unitaires sont rédigés,vérifiés et automatisés couvre le code à un minimum de 80%
-2. L'application est dévelopée selon le design patern MVC
+2. L'application est développée selon le design pattern MVC
 3. Le code source est envoyé sur github sur la branche principale
 4. Les US sont validées par le PO
 5. La revue croisée du code a été réalisée
