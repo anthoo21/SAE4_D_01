@@ -73,7 +73,6 @@
         <div class="row">
             <p class="titre">Palmarès Articles</p>
         </div>
-    </div>
     <!-- Recherche par critères -->
     <div class="row">
         <div class="search-box A">
@@ -231,6 +230,7 @@
             const myChart = new Chart(document.getElementById('myChart'), config1);
         </script>
     <?php } ?>
+    </div>
 </body>
 
 </html>
