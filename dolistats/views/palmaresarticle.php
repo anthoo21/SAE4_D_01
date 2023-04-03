@@ -184,28 +184,24 @@
         $ligneQuantite = "[" . $ligneQuantite . "]";  // Ajout des crochets
         var_dump($ligneLibelle);
         var_dump($ligneQuantite);
-        // Todo pk je trouve pas le js
         ?>
     </div>  
     <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
         <script>
-            console.log("test");
-            document.write(5 + 6); // pour tester le js
             // setup 
             const data = {
-                labels: <?php echo $ligneLibelle; ?>, // TODO tous les libelles des produits
+                labels: <?php echo $ligneLibelle; ?>, 
 
                 datasets: [{
-                    label: '<?php echo $LeTitre; ?>', // TODO le titre
-                    data: <?php echo $ligneQuantite; ?>, // TODO les quantités
+                    label: '<?php echo $LeTitre; ?>', 
+                    data: <?php echo $ligneQuantite; ?>, 
                     backgroundColor: 'rgb(255, 99, 132)', // TODO le style
 
                     borderWidth: 1
                 }]
             };
             console.log(data);
-            /////////////////////////////////////////////////////////////////////
-            // Exemple 1 
+
             const config1 = {
                 type: 'bar',
                 data,
