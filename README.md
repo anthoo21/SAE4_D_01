@@ -4,7 +4,7 @@ L'objectif du projet est la réalisation d'une application WEB destinée à des 
 
 Le projet est codé en html, css et curl en php. L’architecture est de type MVC.
 
-Notre projet est hébergé sur Webhost : https://dolistatsb.000webhostapp.com/
+Notre projet est hébergé sur AlwaysData : http://sae4d-01-dolistats.alwaysdata.net/
 
 # Participants au projet et leur rôle
 Sprint 1
@@ -27,7 +27,6 @@ Sprint 3
 
 
 # Définition de fini
-
 1. Les tests unitaires sont rédigés,vérifiés et automatisés couvre le code à un minimum de 80%
 2. L'application est développée selon le design pattern MVC
 3. Le code source est envoyé sur github sur la branche principale
@@ -45,3 +44,4 @@ Sprint 3
 - Zenhub : https://app.zenhub.com/workspaces/sae4-d-01-dolistats-63ef78d2947d630010f39c44?invite=WmPKjU4su9Vru3aVtdxHQW7H
 - GitHub : https://github.com/anthoo21/SAE4_D_01_Dolistats.git
 - Figma : https://www.figma.com/proto/Ye6K9Xhxr5IYRzNzTFnZNW/Dolistats?node-id=10-100&starting-point-node-id=10%3A
+- Diapo des impacts en anglais : https://view.genial.ly/64233c033b45fb0011968fbd/presentation-dolistats-presentation
