@@ -86,8 +86,8 @@
                                                                                                                 echo '';
                                                                                                             }
                                                                                                             ?>">
-                    <input type="radio" id="quantite" name="choixQ"> <label for="quantite">En quantité</label>
-                    <input type="radio" id="ca" name="choixC"> <label for="ca">En chiffre d'affaires</label>
+                    <input type="radio" id="quantite" name="choix" value="qty"c checked> <label for="quantite">En quantité</label>
+                    <input type="radio" id="ca" name="choix" value="ca"> <label for="ca">En chiffre d'affaires</label>
                 </div>
                 <div class="col-xs-12 part">
                     De
@@ -103,7 +103,7 @@
             </form>
         </div>
     </div>
-    <?php if (isset($_POST['valider']) && isset($_POST['choixQ']) || isset($_POST['choixC'])) {
+    <?php if (isset($_POST['valider']) && isset($_POST['choix'])) {
         $Donnees = []; // une hashmap, clef libelle et valeur CA ou quantité du produit
         $Ref = []; // une hashmap, clef ref et valeur CA ou quantité du produit
         $ligneLibelle = "";
@@ -117,7 +117,7 @@
             // Dans l'intervalle de date
             if ($date >= $_POST['dateDe'] && $date <= $_POST['dateA']) {
                 foreach ($ligne['lines'] as $wanted) {
-                    if (isset($_POST['choixQ'])) {
+                    if ($_POST['choix'] == 'qty') {
                         // Somme des quantités
                         if (array_key_exists($wanted['libelle'], $Donnees)) {
                             $Donnees[$wanted['libelle']] = $Donnees[$wanted['libelle']] + $wanted['qty'];
@@ -139,13 +139,10 @@
                 }
             }
         }
-        /* Top , 
-        TODO gérer quand c'est 10 et qu'il y a pas 10 produit (le break)
-            nb négatif
-            0 affiche le graph mais se passe rien, message ? 
-        */
-        while (count($Donnees) != $_POST['rechercheNb']) { // && count donnees >= 0 ? 
+        // Top
+        while (count($Donnees) != $_POST['rechercheNb']) { 
             if (count($Donnees) == 0) {
+                echo " <p class=\"alert alert-danger\"> <b>Affichage impossible,vide pour ce top</b> </p>";
                 break;
             }
             // On cherche le min
@@ -164,8 +161,13 @@
         echo  "<tr>
                 <th>Réf.</th>
                 <th>Désignation</th>
-                <th>Chiffre d affaires</th>
-                </tr>";
+                <th>";if ($_POST['choix'] == 'qty') {
+                    echo "Quantite";
+                } else {
+                    echo "Chiffre d'Affaires HT";
+                }
+        echo    "</th>";
+        echo    "</tr>";
         $compteKeys = 0;
         foreach ($Donnees as $label => $quantite) {
             if ($ligneLibelle != "") $ligneLibelle .= ",";// Mise en forme graphique
@@ -197,7 +199,7 @@
                 labels: <?php echo $ligneLibelle; ?>,
 
                 datasets: [{
-                    label: '<?php if (isset($_POST['choixQ'])) {
+                    label: '<?php if ($_POST['choix'] == 'qty') {
                                 echo $LeTitreQ;
                             } else {
                                 echo $LeTitreCA;
