@@ -165,8 +165,13 @@
         echo  "<tr>
                 <th>Réf.</th>
                 <th>Désignation</th>
-                <th>Chiffre d affaires</th>
-                </tr>";
+                <th>";if (isset($_POST['choixQ'])) {
+                    echo "Quantite";
+                } else {
+                    echo "Chiffre d'Affaires";
+                }
+        echo    "</th>";
+        echo    "</tr>";
         $compteKeys = 0;
         foreach ($Donnees as $label => $quantite) {
             if ($ligneLibelle != "") $ligneLibelle .= ",";// Mise en forme graphique
