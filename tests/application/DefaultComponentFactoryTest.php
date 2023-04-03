@@ -25,13 +25,13 @@ use controllers\PalmaresArticlesController;
 use controllers\palmaresClientController;
 use controllers\ClientsController;
 use controllers\FacturesController;
+use PHPUnit\Framework\TestCase;
 use services\LoginService;
 use services\ArticlesService;
 use services\ClientsService;
 use services\FacturesService;
 use services\PalmaresArticlesService;
 use services\palmaresClientService;
-use PHPUnit\Framework\TestCase;
 use yasmf\NoControllerAvailableForName;
 use yasmf\NoServiceAvailableForName;
 
