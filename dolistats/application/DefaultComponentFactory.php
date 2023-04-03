@@ -22,6 +22,7 @@ namespace application;
 use controllers\HomeController;
 use controllers\ArticlesController;
 use controllers\PalmaresArticlesController;
+use controllers\palmaresClientController;
 use controllers\ClientsController;
 use controllers\FacturesController;
 use services\LoginService;
@@ -29,6 +30,7 @@ use services\ArticlesService;
 use services\ClientsService;
 use services\FacturesService;
 use services\PalmaresArticlesService;
+use services\palmaresClientService;
 use yasmf\ComponentFactory;
 use yasmf\NoControllerAvailableForName;
 use yasmf\NoServiceAvailableForName;
@@ -36,6 +38,7 @@ use yasmf\NoServiceAvailableForName;
 require("services/LoginService.php");
 require("services/ArticlesService.php");
 require("services/PalmaresArticlesService.php");
+require("services/palmaresClientService.php");
 require("services/ClientsService.php");
 require("services/FacturesService.php");
 /**
@@ -48,6 +51,7 @@ class DefaultComponentFactory implements ComponentFactory
     private ?LoginService $loginService = null;
     private ?ArticlesService $articlesService = null;
     private ?PalmaresArticlesService $palmaresArticlesService = null;
+    private ?palmaresClientService $palmaresClientService = null;
     private ?ClientsService $clientsService = null;
     private ?FacturesService $facturesService = null;
     private ?chiffreaffaireservice $chiffreaffaireservice = null;
@@ -62,6 +66,7 @@ class DefaultComponentFactory implements ComponentFactory
             "Home" => $this->buildHomeController(),
             "Articles" => $this->buildArticlesController(),
             "PalmaresArticles" => $this->buildPalmaresArticlesController(),
+            "palmaresClient" => $this->buildPalmaresClientController(),
             "Clients" => $this->buildClientsController(),
             "Factures" => $this->buildFacturesController(),
             "chiffreaffaire" => $this->buildChiffreAffaireController(),
@@ -75,6 +80,7 @@ class DefaultComponentFactory implements ComponentFactory
             "Login" => $this->buildLoginService(),
             "Articles" => $this->buildArticlesService(),
             "PalmaresArticles" => $this->buildPalmaresArticlesService(),
+            "palmaresClient" => $this->buildPalmaresClientService(),
             "Clients" => $this->buildClientsService(),
             "Factures" => $this->buildFacturesService(),
             "chiffreaffaire" => $this->buildChiffreAffaireController(),
@@ -105,7 +111,7 @@ class DefaultComponentFactory implements ComponentFactory
     }
 
     /**
-     * @return LoginService
+     * @return PalmaresArticlesService
      */
     private function buildPalmaresArticlesService(): PalmaresArticlesService
     {
@@ -113,6 +119,17 @@ class DefaultComponentFactory implements ComponentFactory
             $this->palmaresArticlesService = new PalmaresArticlesService();
         }
         return $this->palmaresArticlesService;
+    }
+
+    /**
+     * @return palmaresClientService
+     */
+    private function buildPalmaresClientService(): palmaresClientService
+    {
+        if ($this->palmaresClientService == null) {
+            $this->palmaresClientService = new palmaresClientService();
+        }
+        return $this->palmaresClientService;
     }
 
 
@@ -160,7 +177,9 @@ class DefaultComponentFactory implements ComponentFactory
         return new PalmaresArticlesController($this->buildPalmaresArticlesService());
     }
 
-    
+    public function buildPalmaresClientController(): palmaresClientController {
+        return new palmaresClientController($this->buildPalmaresClientService());
+    }
 
     public function buildClientsController(): ClientsController {
         return new ClientsController($this->buildClientsService());

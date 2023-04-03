@@ -44,7 +44,7 @@
 				</form>
                 <form action="index.php" method="post">
                     <div class="col-xs-2">
-                        <input type="hidden" name="controller" value="PalmaresClients">
+                        <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
