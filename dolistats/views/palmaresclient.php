@@ -106,18 +106,36 @@
             <table class="table table-striped">
                 <tr>
                     <th>Nom</th>
-                    <th>Prénom</th>
                     <th>Chiffre d'affaires</th>
                 </tr>
 
                 <?php
+                /*
+                $DonneesFacture = [];
+                $DonnesClient = [];
+                foreach ($resultatFac as $CA) {
+                    if (array_key_exists($CA['socid'], $DonneesFacture)) {
+                        $DonneesFacture[$CA['socid']] = $DonneesFacture[$CA['socid']] + $CA['total'];
+                    } else {
+                        $DonneesFacture[$CA['socid']] = $CA['total'];
+                    }
+                }
+
+                foreach ($resultatCli as $nom) {
+                    if (array_key_exists($nom['socid'], $DonnesClient)) {
+                        $DonnesClient[$nom['socid']] = $DonnesClient[$nom['socid']] + $nom['total'];
+                    } else {
+                        $DonnesClient[$nom['socid']] = $nom['total'];
+                    }
+                }
+
                 foreach ($client as $ligne) {
                     echo "<tr>";
                     echo "<td>" . $ligne['nom'] . "</td>";       //Vérifier le nom de la variable
                     echo "<td>" . $ligne['prenom'] . "</td>";  //Vérifier le nom de la variable
                     echo "<td>" . $ligne['ca'] . "</td>";      //Vérifier le nom de la variable
                     echo "</tr>";
-                }
+                } */
                 ?>
             </table>
         </div>

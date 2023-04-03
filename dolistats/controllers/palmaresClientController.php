@@ -4,6 +4,7 @@ namespace controllers;
 
 
 use services\palmaresClientService;
+use services\FacturesService;
 use yasmf\HttpHelper;
 use yasmf\View;
 
@@ -11,6 +12,7 @@ class palmaresClientController
 {
 
     private $palmaresClientService;
+    private $factureClientService;
 
     /**
      * Create and initialize an LoginController object
@@ -19,7 +21,6 @@ class palmaresClientController
     {
         $this->palmaresClientService = $palmaresClientService;
     }
-
     /**
      * Return de default view
      * @return View the default view
@@ -36,11 +37,13 @@ class palmaresClientController
     public function palmares() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
-        $resultat = $this->palmaresClientService->getArticles($apiUrl, $apiKey);
+        $resultatCli = $this->palmaresClientService->getClients($apiUrl, $apiKey);
+        $resultatFac= $this->palmaresClientService->getFactures($apiUrl, $apiKey);
         $view = new View("views/palmaresclient");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
-        $view->setVar('resultat', $resultat);
+        $view->setVar('resultatCli', $resultatCli);
+        $view->setVar('resultatFac', $resultatFac);
         return $view;
     }
 }
