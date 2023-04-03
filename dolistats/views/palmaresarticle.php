@@ -83,7 +83,7 @@
                                                                                                             if (isset($_POST['rechercheNb'])) {
                                                                                                                 echo $_POST['rechercheNb'];
                                                                                                             } else {
-                                                                                                                echo '';
+                                                                                                                echo '5';
                                                                                                             }
                                                                                                             ?>">
                     <input type="radio" id="quantite" name="choix" value="qty"c checked> <label for="quantite">En quantité</label>
@@ -113,7 +113,7 @@
         date_default_timezone_set('Europe/Paris');
         foreach ($resultat as $ligne) {
             $timestamp = $ligne['date_valid']; // renvoie un timestamp
-            $date = date('Y-m-d', $timestamp); // format date bd et input date diffétents
+            $date = date('Y-m-d', $timestamp); // format date bd et input date différents
             // Dans l'intervalle de date
             if ($date >= $_POST['dateDe'] && $date <= $_POST['dateA']) {
                 foreach ($ligne['lines'] as $wanted) {
