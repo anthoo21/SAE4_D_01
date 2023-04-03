@@ -105,6 +105,7 @@
                     <tr>
                         <th>Code client</th>
                         <th>Nom</th>
+                        <th>Code postal</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -123,6 +124,7 @@
                         echo "<tr class=\"accordion\">";
                             echo "<td>".$ligne['code_client']."</td>";
                             echo "<td>".$nomClient."</td>";
+                            echo "<td>".$ligne['zip']."</td>";
                             ?>
                             <form action="index.php" method="post">
                                 <input type="hidden" name="controller" value="Factures">
