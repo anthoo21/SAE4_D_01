@@ -86,7 +86,7 @@
                                                                                                                 echo '5';
                                                                                                             }
                                                                                                             ?>">
-                    <input type="radio" id="quantite" name="choix" value="qty"c checked> <label for="quantite">En quantité</label>
+                    <input type="radio" id="quantite" name="choix" value="qty"checked> <label for="quantite">En quantité</label>
                     <input type="radio" id="ca" name="choix" value="ca"> <label for="ca">En chiffre d'affaires</label>
                 </div>
                 <div class="col-xs-12 part">
@@ -139,10 +139,11 @@
                 }
             }
         }
+        echo " <p class=\"alert alert-info\"> <b>Merci de renseigner un nombre d'articles inférieur ou égal à ". count($Donnees) ." </b></p>";
         // Top
         while (count($Donnees) != $_POST['rechercheNb']) { 
             if (count($Donnees) == 0) {
-                echo " <p class=\"alert alert-danger\"> <b>Affichage impossible,vide pour ce top</b> </p>";
+                echo " <p class=\"alert alert-danger\"> <b>Affichage impossible, vide pour ce top</b> </p>";
                 break;
             }
             // On cherche le min
