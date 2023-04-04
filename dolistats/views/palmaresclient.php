@@ -100,9 +100,17 @@ use function PHPUnit\Framework\equalTo;
                     </div>
                     <div class="col-xs-12 part">
                         De
-                        <input type="date" name="dateDe" required>
+                        <input type="date" name="dateDe" required value="<?php
+                                                                    if (isset($_POST['dateDe'])) {
+                                                                        echo $_POST['dateDe'];
+                                                                    }
+                                                                    ?>">
                         à
-                        <input type="date" name="dateA" required>
+                        <input type="date" name="dateA" required value="<?php
+                                                                    if (isset($_POST['dateA'])) {
+                                                                        echo $_POST['dateA'];
+                                                                    }
+                                                                    ?>">
                         <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="action" value="palmares">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
