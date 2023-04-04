@@ -19,7 +19,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Articles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
-                        <input type="hidden" name="username" value="<?php echo $username;?>">
+                        <input type="hidden" name="username" value="<?php echo $username; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png" alt="logo Recherche Articles"></button>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Clients">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
-                        <input type="hidden" name="username" value="<?php echo $username;?>">
+                        <input type="hidden" name="username" value="<?php echo $username; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheClientMenu.png" alt="logo Recherche clients"></button>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="PalmaresArticles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
-                        <input type="hidden" name="username" value="<?php echo $username;?>">
+                        <input type="hidden" name="username" value="<?php echo $username; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" alt="logo palmares articles"></button>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
-                        <input type="hidden" name="username" value="<?php echo $username;?>">
+                        <input type="hidden" name="username" value="<?php echo $username; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" alt="logo palmares client"></button>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="CA">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
-                        <input type="hidden" name="username" value="<?php echo $username;?>">
+                        <input type="hidden" name="username" value="<?php echo $username; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" alt="logo CA"></button>
                     </div>
@@ -103,107 +103,114 @@
                         <input type="hidden" name="action" value="palmares">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
-                        <input type="hidden" name="username" value="<?php echo $username;?>">
+                        <input type="hidden" name="username" value="<?php echo $username; ?>">
                         <button type="submit" class="search-button">Valider</span></button>
                     </div>
                 </form>
             </div>
         </div>
         <!--Liste des clients rentables-->
-        <?php if(isset($resultatFac)) { ?>
-        <div class="row">
-            <table class="table table-striped">
-                <tr>
-                    <th>Nom</th>
-                    <th>Chiffre d'affaires</th>
-                </tr>
+        <?php if (isset($resultatFac)) { ?>
+            <div class="row">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Chiffre d'affaires</th>
+                    </tr>
 
-                <?php
-                $DonneesFacture = [];
-                $PrixFactures = [];
-                $DonneesClient = [];
-                $NomClient = [];
-                $LigneClient = "";
-                $LignePrix = "";
-                $Titre = "Le prix";
-                $i = 0;
-                foreach ($resultatFac as $CA) {
-                    $DonneesFacture[$i] = $CA['socid'];
-                    $PrixFactures[$i] = $CA['total_ht'];
-                    $i++;
-                    // if (array_key_exists($CA['socid'], $DonneesFacture)) {
-                    //     $DonneesFacture[$CA['socid']] = $DonneesFacture[$CA['socid']] + $CA['total'];
-                    // } else {
-                    //     $DonneesFacture[$CA['socid']] = $CA['total'];
-                    // }
-                }
-
-                $i = 0;
-                foreach ($resultatCli as $nom) {
-                    $DonneesClient[$i] = $nom['ref'];
-                    $NomClient[$i] = $nom['name'];
-                    $i++;
-                    // if (array_key_exists($nom['socid'], $DonnesClient)) {
-                    //     $DonnesClient[$nom['socid']] = $DonnesClient[$nom['socid']] + $nom['total'];
-                    // } else {
-                    //     $DonnesClient[$nom['socid']] = $nom['total'];
-                    // }
-                }
-
-                // foreach ($client as $ligne) {
-                for($i = 0; $i <= count($DonneesFacture)-1; $i++) {
-                    if(in_array($DonneesFacture[$i],$DonneesClient)) {
-                        echo "<tr>";
-                            echo "<td>".$NomClient[$i]."</td>";     //Vérifier le nom de la variable
-                            echo "<td>".(float)number_format($PrixFactures[$i],2,'.','')."€</td>";      //Vérifier le nom de la variable
-                        echo "</tr>";
+                    <?php
+                    $DonneesFacture = [];
+                    $PrixFactures = [];
+                    $DonneesClient = [];
+                    $NomClient = [];
+                    $LigneClient = "";
+                    $LignePrix = "";
+                    $Titre = "Le prix";
+                    $i = 0;
+                    foreach ($resultatFac as $CA) {
+                        $DonneesFacture[$i] = $CA['socid'];
+                        $PrixFactures[$i] = $CA['total_ht'];
+                        $i++;
+                        // if (array_key_exists($CA['socid'], $DonneesFacture)) {
+                        //     $DonneesFacture[$CA['socid']] = $DonneesFacture[$CA['socid']] + $CA['total'];
+                        // } else {
+                        //     $DonneesFacture[$CA['socid']] = $CA['total'];
+                        // }
                     }
-                }
-                echo "</table>";
-                echo "<canvas id=\"myChart\" width=\"400\" height=\"225\"></canvas>";
 
-                foreach ($NomClient as $key => $value) {
-                    if ($LigneClient != "") $LigneClient .= ",";// Mise en forme graphique
-                    $LigneClient .= '"' . $value . '"';
-                } 
-                foreach ($PrixFactures as $key => $value) {
-                    if ($LignePrix != "") $LignePrix .= ",";// Mise en forme graphique
-                    $LignePrix .= '"' . $value . '"';
-                }
-                $LigneClient = "[" . $LigneClient . "]";  // Ajout des crochets
-                $LignePrix = "[" . $LignePrix . "]";  // Ajout des crochets 
-                ?>
-            </table>
-        </div>
-        <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
-        <script>
-            // setup 
-            const data = {
-                labels: <?php echo $LigneClient; ?>,
+                    $i = 0;
+                    foreach ($resultatCli as $nom) {
+                        $DonneesClient[$i] = $nom['ref'];
+                        $NomClient[$i] = $nom['name'];
+                        $i++;
+                        // if (array_key_exists($nom['socid'], $DonnesClient)) {
+                        //     $DonnesClient[$nom['socid']] = $DonnesClient[$nom['socid']] + $nom['total'];
+                        // } else {
+                        //     $DonnesClient[$nom['socid']] = $nom['total'];
+                        // }
+                    }
 
-                datasets: [{
-                    label: '<?php echo $Titre?>',
-                    data: <?php echo $LignePrix; ?>,
-                    backgroundColor: 'rgb(255, 99, 132)', // TODO le style
-
-                    borderWidth: 1
-                }]
-            };
-            console.log(data);
-
-            const config1 = {
-                type: 'pie',
-                data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                    // foreach ($client as $ligne) {
+                    for ($i = 0; $i <= count($DonneesFacture) - 1; $i++) {
+                        if (in_array($DonneesFacture[$i], $DonneesClient)) {
+                            echo "<tr>";
+                            echo "<td>" . $NomClient[$i] . "</td>";     //Vérifier le nom de la variable
+                            echo "<td>" . (float)number_format($PrixFactures[$i], 2, '.', '') . "€</td>";      //Vérifier le nom de la variable
+                            echo "</tr>";
                         }
                     }
+                    echo "</table>";
+                    echo "<canvas id=\"myChart\" width=\"200px\" height=\"127.5px\"></canvas>";
+
+                    foreach ($NomClient as $key => $value) {
+                        if ($LigneClient != "") $LigneClient .= ","; // Mise en forme graphique
+                        $LigneClient .= '"' . $value . '"';
+                    }
+                    foreach ($PrixFactures as $key => $value) {
+                        if ($LignePrix != "") $LignePrix .= ","; // Mise en forme graphique
+                        $LignePrix .= '"' . $value . '"';
+                    }
+                    $LigneClient = "[" . $LigneClient . "]";  // Ajout des crochets
+                    $LignePrix = "[" . $LignePrix . "]";  // Ajout des crochets 
+                    ?>
+            </div>
+            <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
+            <script>
+                // setup 
+                const data = {
+                    labels: <?php echo $LigneClient; ?>,
+
+                    datasets: [{
+                        label: '<?php echo $Titre ?>',
+                        data: <?php echo $LignePrix; ?>,
+                        backgroundColor: [], // TODO le style
+
+                        borderWidth: 1
+                    }]
+                };
+                for (let i = 0; i < <?php echo count($DonneesFacture); ?>; i++) {
+                    const r = Math.floor(Math.random() * 256);
+                    const g = Math.floor(Math.random() * 256);
+                    const b = Math.floor(Math.random() * 256);
+                    const randomColor = `rgb(${r}, ${g}, ${b})`;
+                    data.datasets[0].backgroundColor.push(randomColor);
                 }
-            };
-            const myChart = new Chart(document.getElementById('myChart'), config1);
-        </script>
+
+                console.log(data);
+
+                const config1 = {
+                    type: 'pie',
+                    data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                };
+                const myChart = new Chart(document.getElementById('myChart'), config1);
+            </script>
         <?php } ?>
     </div>
 </body>
