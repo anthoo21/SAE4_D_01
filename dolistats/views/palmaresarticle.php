@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
     <link rel="stylesheet" href="../css/stylePalmares.css">
+    <link rel="stylesheet" href="../css/errorMessage.css">
 </head>
 
 <body>
@@ -124,7 +125,15 @@
             </form>
         </div>
     </div>
-    <?php if (isset($_POST['valider']) && isset($_POST['choix'])) {
+    <?php 
+    if(isset($httpStatus) && $httpStatus != 200) {
+        ?>
+        
+        <h2 class="error-message">Vous n'avez pas les droits nécessaires</h2>
+
+        <?php
+    } else {
+    if (isset($_POST['valider']) && isset($_POST['choix'])) {
         $Donnees = []; // une hashmap, clef libelle et valeur CA ou quantité du produit
         $Ref = []; // une hashmap, clef ref et valeur CA ou quantité du produit
         $ligneLibelle = "";
@@ -186,6 +195,7 @@
                 <th>";if ($_POST['choix'] == 'qty') {
                     echo "Quantite";
                 } else {
+                    $CA = true;
                     echo "Chiffre d'Affaires HT";
                 }
         echo    "</th>";
@@ -204,7 +214,12 @@
             echo "<td>" . $keyRef[$compteKeys] . "</td>"; 
             $compteKeys ++;
             echo "<td>" . $label . "</td>";
-            echo "<td>" . $quantite . "</td>";
+            $euro = "";
+            if(isset($CA) && $CA) {
+                $quantite = sprintf("%.2f",$quantite);
+                $euro = "€";
+            }
+            echo "<td>".$quantite.$euro."</td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -249,8 +264,11 @@
                 }
             };
             const myChart = new Chart(document.getElementById('myChart'), config1);
+
+            
         </script>
-    <?php } ?>
+    <?php }
+    }   ?>
     </div>
 </body>
 

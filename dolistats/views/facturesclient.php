@@ -88,7 +88,15 @@
 		
 		<!--Liste des factures-->
         <?php   
-        if(isset($resultat)) {
+        if(isset($httpStatus) && $httpStatus != 200) {
+            ?>
+            <div class="error-message">
+                Droit
+            </div>
+        </div>
+            <?php
+        } else {
+            if(isset($resultat)) {
         ?>
         <div class="row">
             <table class="table table-striped">
@@ -112,7 +120,7 @@
                             echo "<td>".$ligne['ref']."</td>";
                             echo "<td>".$ligne['id']."</td>";
                             echo "<td>".$date."</td>";
-                            echo "<td>".(float)number_format($ligne['total_ht'], 1, '.', '')."€</td>";
+                            echo "<td>".sprintf("%.2f",$ligne['total_ht'])."€</td>";
                             echo "<td><button class=\"accordion-button\"></button></td>";
                         echo "</tr>";
                         echo "<tr class=\"accordion-content\">";
@@ -133,24 +141,24 @@
                                echo "<tr>
                                         <td>".$ligne2['ref']."</td>
                                         <td>".$ligne2['libelle']."</td>
-                                        <td>".(float)number_format($ligne2['tva_tx'],0,'.','')."%</td>
-                                        <td>".(float)number_format($ligne2['subprice'],2,'.','')."€</td>
+                                        <td>".sprintf("%.2f",$ligne2['tva_tx'])."%</td>
+                                        <td>".sprintf("%.2f",$ligne2['subprice'])."€</td>
                                         <td>".$ligne2['remise_percent']."%</td>
-                                        <td>".(float)number_format($ligne2['subprice'],2,'.','')*(1-(((float)number_format($ligne2['remise_percent'],2,'.',''))/100))."€</td>
+                                        <td>".sprintf("%.2f",$ligne2['subprice'])*(1-((sprintf("%.2f",(float)$ligne2['remise_percent']/100))))."€</td>
                                         <td>".$ligne2['qty']."</td>
-                                        <td>".(float)number_format($ligne2['total_ht'],2,'.','')."€</td>
+                                        <td>".sprintf("%.2f",$ligne2['total_ht'])."€</td>
                                     </tr>";
                             }
                         for($i = 0; $i <= 4; $i++) {
                             if($ligne['totalpaid'] == null) {
                                 $paye = 0;
                             } else {
-                                $paye = (float)number_format($ligne['totalpaid'],2,'.','');
+                                $paye = sprintf("%.2f",$ligne['totalpaid']);
                             }
-                            $totalHT = (float)number_format($ligne['multicurrency_total_ht'],2,'.','');
-                            $totalTVA = (float)number_format($ligne['multicurrency_total_tva'],2,'.','');
-                            $totalTTC = (float)number_format($ligne['multicurrency_total_ttc'],2,'.','');
-                            $resteAPayer = (float)number_format($ligne['remaintopay'],2,'.','');
+                            $totalHT = sprintf("%.2f",$ligne['multicurrency_total_ht']);
+                            $totalTVA = sprintf("%.2f",$ligne['multicurrency_total_tva']);
+                            $totalTTC = sprintf("%.2f",$ligne['multicurrency_total_ttc']);
+                            $resteAPayer = sprintf("%.2f",$ligne['remaintopay']);
                             echo "<tr>
                                 <td></td>
                                 <td></td>
@@ -191,6 +199,7 @@
                         echo "</tr>";
                     }
                 }
+        }
                 ?>
                 </tbody>
             </table>

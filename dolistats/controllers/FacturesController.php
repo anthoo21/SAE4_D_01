@@ -31,6 +31,7 @@ class FacturesController
         $nomClient = HttpHelper::getParam('nomClient');
         $idClient = HttpHelper::getParam('idClient');
         $resultat = $this->facturesService->getFacturesClient($apiUrl, $apiKey);
+        $httpStatus = $this->facturesService->getHttpStatus($apiUrl, $apiKey);
         $view = new View("views/facturesclient");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
@@ -38,6 +39,7 @@ class FacturesController
         $view->setVar('nomClient', $nomClient);
         $view->setVar('resultat', $resultat);
         $view->setVar('idClient', $idClient);
+        $view->setVar('httpStatus', $httpStatus);
         return $view;
     }
 

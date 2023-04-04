@@ -41,12 +41,14 @@ class ClientsController
         $apiKey = HttpHelper::getParam('apiKey');
         $username = HttpHelper::getParam('username');
         $resultat = $this->clientsService->getClients($recherche, $apiUrl, $apiKey);
+        $httpStatus = $this->clientsService->getHttpStatus($recherche, $apiUrl, $apiKey);
         $view = new View("views/rechercheclients");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('username', $username);
         $view->setVar('resultat', $resultat);
         $view->setVar('recherche', $recherche);
+        $view->setVar('httpStatus', $httpStatus);
         return $view;
     }
 }

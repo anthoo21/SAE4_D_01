@@ -58,4 +58,8 @@ class HomeController
         return $view;
     }
 
+    public function retourUrl() {
+        return new View('views/choixUrl');
+    }
+
 }

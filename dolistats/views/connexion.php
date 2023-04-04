@@ -56,10 +56,15 @@
 						<input type="hidden" name="action" value="connexion">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl ?>">
 						<input type="submit" name="connexion" value="Se connecter" class="buttonConnect">
-					</div>
+						</form>
 					<?php
 					?>
+				<form action="index.php" method="post">
+					<input type="hidden" name="controller" value="Home">
+					<input type="hidden" name="action" value="retourUrl">
+					<input type="submit" name="connexion" value="Retourner au choix de l'URL" class="buttonConnect">
 				</form>
+				</div>
 
 			</div>	
 		</div>

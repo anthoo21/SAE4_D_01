@@ -23,9 +23,6 @@ function createSelectOptions($filename) {
         }
     }
 }
-
-// Appelle la fonction pour créer la liste déroulante
-createSelectOptions('urls.ini');
 ?>
 
     <!--Image accueil-->

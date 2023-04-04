@@ -5,7 +5,7 @@ namespace services;
 
 class FacturesService {
 
-    public static function getFacturesClient($apiUrl, $apiKey) {
+    public static function getCurl($apiUrl, $apiKey) {
         $apiUrl = $apiUrl."invoices?sortfield=t.rowid&sortorder=ASC&limit=100";
         $curl = curl_init();
         
@@ -30,21 +30,29 @@ class FacturesService {
             $httpheader = ['DOLAPIKEY: '.$apiKey];
         }
         curl_setopt($curl, CURLOPT_HTTPHEADER, $httpheader);
+        return $curl;
+    }
+
+    public function getFacturesClient($apiUrl, $apiKey) {
         
-        // A utiliser sur le réseau des PC IUT, pas en WIFI, pas sur une autre connexion
-        // $proxy="http://cache.iut-rodez.fr:8080";
-        // curl_setopt($curl, CURLOPT_HTTPPROXYTUNNEL, true);
-        // curl_setopt($curl, CURLOPT_PROXY,$proxy ) ;
-        ///////////////////////////////////////////////////////////////////////////////
-        
+        $curl = $this->getCurl($apiUrl, $apiKey);
         $result = curl_exec($curl);								// Exécution
-        $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);	// Récupération statut 
         
         curl_close($curl);	
         $resultat=json_decode($result,true);
         return $resultat;
     }
     
+    public function getHttpStatus($apiUrl, $apiKey) {
+        
+        $curl = $this->getCurl($apiUrl, $apiKey);
+        $result = curl_exec($curl);								// Exécution
+        $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);	// Récupération statut 
+        
+        curl_close($curl);	
+        return $http_status;
+    }
+
     private static $defaultService;
     /**
      * @return mixed

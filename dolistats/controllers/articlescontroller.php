@@ -41,18 +41,15 @@ class ArticlesController
         $apiKey = HttpHelper::getParam('apiKey');
         $username = HttpHelper::getParam('username');
         $resultat = $this->articlesService->getArticles($recherche, $apiUrl, $apiKey);
+        $httpStatus = $this->articlesService->getHttpStatus($recherche, $apiUrl, $apiKey);
         $view = new View("views/recherchearticle");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('username', $username);
         $view->setVar('resultat', $resultat);
         $view->setVar('recherche', $recherche);
+        $view->setVar('httpStatus', $httpStatus);
         return $view;
     }
 
-
-    public function palmares() {
-        $view = new View("views/palmaresArticle.php");
-        return $view;
-    }
 }

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
     <link rel="stylesheet" href="../css/stylePalmares.css">
+    <link rel="stylesheet" href="../css/errorMessage.css">
 </head>
 
 <body>
@@ -123,7 +124,15 @@
             </div>
         </div>
         <!--Liste des clients rentables-->
-        <?php if (isset($resultatFac)) { ?>
+        <?php 
+        if(isset($httpStatusClients) &&  isset($httpStatusFactures) && $httpStatusClients != 200 && $httpStatusFactures != 200) {
+            ?>
+            
+            <h2 class="error-message">Vous n'avez pas les droits nécessaires</h2>
+            
+            <?php
+        } else {
+        if (isset($resultatFac)) { ?>
             <div class="row">
                 <table class="table table-striped">
                     <tr>
@@ -146,14 +155,9 @@
                         $date = date('Y-m-d', $timestamp); // format date bd et input date différents
                         // Dans l'intervalle de date
                         if ($date >= $_POST['dateDe'] && $date <= $_POST['dateA']) {
-                        $DonneesFacture[$i] = $CA['socid'];
-                        $PrixFactures[$i] = $CA['total_ht'];
-                        $i++;
-                        // if (array_key_exists($CA['socid'], $DonneesFacture)) {
-                        //     $DonneesFacture[$CA['socid']] = $DonneesFacture[$CA['socid']] + $CA['total'];
-                        // } else {
-                        //     $DonneesFacture[$CA['socid']] = $CA['total'];
-                        // }
+                            $DonneesFacture[$i] = $CA['socid'];
+                            $PrixFactures[$i] = $CA['total_ht'];
+                            $i++;
                         }
                     }
 
@@ -177,7 +181,7 @@
 							$bonNomClient[$i] = $NomClient[$i];
                             echo "<tr>";
                             echo "<td>" . $bonNomClient[$i] . "</td>";     //Vérifier le nom de la variable
-                            echo "<td>" . (float)number_format($PrixFactures[$i], 2, '.', '') . "€</td>";      //Vérifier le nom de la variable
+                            echo "<td>" . sprintf("%.2f",$PrixFactures[$i]) . "€</td>";      //Vérifier le nom de la variable
                             echo "</tr>";
                         }
                     }
@@ -227,16 +231,12 @@
                     data,
                     options: {
                         maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
                     }
                 };
                 const myChart = new Chart(document.getElementById('myChart'), config1);
             </script>
-        <?php } ?>
+        <?php }
+    }?>
     </div>
 </body>
 

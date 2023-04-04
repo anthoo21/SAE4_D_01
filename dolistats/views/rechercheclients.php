@@ -7,6 +7,7 @@
 	  <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
 	  <link rel="stylesheet" href="../css/styleRecherche.css"> 
       <link rel="stylesheet" href="../css/testAccordeon.css"> 
+      <link rel="stylesheet" href="../css/errorMessage.css"> 
   </head>
   
   <body>
@@ -106,6 +107,14 @@
         </div>
 		<!--Liste des clients-->
         <?php   
+        if(isset($httpStatus) && $httpStatus != 200) {
+            ?>
+            
+            <h2 class="error-message">Vous n'avez pas les droits nécessaires</h2>
+            
+        </div>
+            <?php
+        } else {
         if(isset($recherche)) {
         ?>
         <div class="row">
@@ -165,6 +174,7 @@
             </table>
         </div>
         <?php
+        }
         }
         ?>
 	</div>

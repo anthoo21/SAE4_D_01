@@ -7,6 +7,7 @@
 	  <link rel="stylesheet" href="../fontawesome-free-5.10.2-web/css/all.css">
 	  <link rel="stylesheet" href="../css/styleRecherche.css"> 
       <link rel="stylesheet" href="../css/testAccordeon.css"> 
+      <link rel="stylesheet" href="../css/errorMessage.css"> 
   </head>
   
   <body>
@@ -106,8 +107,15 @@
         </div>
 		<!--Liste des clients-->
         <?php   
-        if(isset($resultat)) {
-        ?>
+        if(isset($httpStatus) && $httpStatus != 200) {
+            ?>
+            
+            <h2 class="error-message">Vous n'avez pas les droits nécessaires</h2>
+            
+            <?php
+        } else {
+            if(isset($resultat)) {
+            ?>
     
         <div class="row">
             <table class="table table-striped">
@@ -128,10 +136,20 @@
                     echo "<tr class=\"accordion-content\">";
                         echo "<td></td>";
                         echo "<td>Description : ".$ligne['description']."<br>
-                              Prix HT : ".(float)number_format($ligne['price'], 2, '.', '')."<br>
-                              Prix TTC : ".(float)number_format($ligne['price_ttc'], 2, '.', '')."<br>
-                              Prix min TTC : ".(float)number_format($ligne['price_min_ttc'], 2, '.', '')."<br>
-                              Stocks : ".$ligne['stock_reel']."<br>
+                              Prix HT : ".sprintf("%.2f",$ligne['price'])."€<br>
+                              Prix TTC : ".sprintf("%.2f",$ligne['price_ttc'])."€<br>
+                              Prix min TTC : ";
+                              $euro = "";
+                              if(isset($ligne['price_min_ttc'])) {
+                                $prixMin = sprintf("%.2f",$ligne['price_min_ttc']);
+                                $euro = "€";
+                              }
+                        echo $prixMin.$euro."<br>
+                              Stocks : ";
+                              if(isset($ligne['stock_reel'])) {
+                                echo $ligne['stock_reel'];
+                              }
+                        echo "<br>
                               Poids : ".$ligne['height']."</td>";
                     echo "</tr>";
                 }
@@ -141,6 +159,7 @@
         </div>
         <?php
         }
+    }
         ?>
 	</div>
     <script>

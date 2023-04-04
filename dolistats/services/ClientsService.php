@@ -5,7 +5,7 @@ namespace services;
 
 class ClientsService {
 
-    public static function getClients($recherche, $apiUrl, $apiKey) {
+    public static function getCurl($recherche, $apiUrl, $apiKey) {
         $apiUrl = $apiUrl."thirdparties?sortfield=t.nom&sortorder=ASC&limit=100&sqlfilters=(t.nom%3Alike%3A'%25".$recherche."%25')";
         $curl = curl_init();
         
@@ -31,18 +31,32 @@ class ClientsService {
         }
         curl_setopt($curl, CURLOPT_HTTPHEADER, $httpheader);
         
-        // A utiliser sur le réseau des PC IUT, pas en WIFI, pas sur une autre connexion
-        // $proxy="http://cache.iut-rodez.fr:8080";
-        // curl_setopt($curl, CURLOPT_HTTPPROXYTUNNEL, true);
-        // curl_setopt($curl, CURLOPT_PROXY,$proxy ) ;
-        ///////////////////////////////////////////////////////////////////////////////
-        
         $result = curl_exec($curl);								// Exécution
-        $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);	// Récupération statut 
+
+        return $curl;
+    }
+
+    public function getClients($recherche, $apiUrl, $apiKey) {
+
+        $curl = $this->getCurl($recherche, $apiUrl, $apiKey);
+
+        $result = curl_exec($curl);								// Exécution
         
         curl_close($curl);	
         $resultat=json_decode($result,true);
+
         return $resultat;
+    }
+
+    public function getHttpStatus($recherche, $apiUrl, $apiKey) {
+
+        $curl = $this->getCurl($recherche, $apiUrl, $apiKey);
+
+        $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);	// Récupération statut 
+        
+        curl_close($curl);	
+
+        return $http_status;
     }
     
     private static $defaultService;

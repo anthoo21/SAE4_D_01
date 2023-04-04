@@ -5,7 +5,7 @@ namespace services;
 
 class ArticlesService {
 
-    public static function getArticles($recherche, $apiUrl, $apiKey) {
+    public static function getCurl($recherche, $apiUrl, $apiKey) {
         $apiUrl = $apiUrl."products?sortfield=t.label&sortorder=ASC&limit=100&sqlfilters=(t.label%3Alike%3A'%25".$recherche."%25')";
         $curl = curl_init();
         
@@ -30,19 +30,33 @@ class ArticlesService {
             $httpheader = ['DOLAPIKEY: '.$apiKey];
         }
         curl_setopt($curl, CURLOPT_HTTPHEADER, $httpheader);
+
+        $result = curl_exec($curl);
+
+        return $curl;
+    }
+
+    public function getArticles($recherche, $apiUrl, $apiKey) {
         
-        // A utiliser sur le réseau des PC IUT, pas en WIFI, pas sur une autre connexion
-        // $proxy="http://cache.iut-rodez.fr:8080";
-        // curl_setopt($curl, CURLOPT_HTTPPROXYTUNNEL, true);
-        // curl_setopt($curl, CURLOPT_PROXY,$proxy ) ;
-        ///////////////////////////////////////////////////////////////////////////////
+        $curl = $this->getCurl($recherche, $apiUrl, $apiKey);
         
         $result = curl_exec($curl);								// Exécution
-        $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);	// Récupération statut 
         
         curl_close($curl);	
         $resultat=json_decode($result,true);
+
         return $resultat;
+    }
+
+    public function getHttpStatus($recherche, $apiUrl, $apiKey) {
+        
+        $curl = $this->getCurl($recherche, $apiUrl, $apiKey);
+
+        $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);	// Récupération statut 
+        
+        curl_close($curl);	
+        
+        return $http_status;
     }
     
 
