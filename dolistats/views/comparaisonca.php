@@ -18,8 +18,9 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Articles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
+                        <button type="submit" class="boutonNavbar" title="Recherche articles"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
                         alt="logo Recherche Articles"></button>
                     </div>
 				</form>
@@ -27,8 +28,9 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Clients">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheClientMenu.png"
+                        <button type="submit" class="boutonNavbar" title="Recherche clients"><img class="logoNav" src="../assets/RechercheClientMenu.png"
                         alt="logo Recherche clients"></button>
                     </div>
                 </form>
@@ -36,8 +38,9 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="PalmaresArticles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" 
+                        <button type="submit" class="boutonNavbar" title="Palmares articles"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" 
                         alt="logo palmares articles"></button>
                     </div>
 				</form>
@@ -45,8 +48,9 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
+                        <button type="submit" class="boutonNavbar" title="Palmares clients"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
                         alt="logo palmares client"></button>
                     </div>
                 </form>
@@ -54,8 +58,9 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="chiffreAffaire">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
+                        <button type="submit" class="boutonNavbar" title="Recherche articles"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
                         alt="logo CA"></button>
                     </div>
                 </form>
@@ -64,11 +69,14 @@
 			<!--Espace dans la navbar-->
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-4">
-				<form action="rechercheArticle.php" method="post">				
-					<div class="col-sm-9 col-xs-12" class="deco"> Nom Prénom
-					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
-                    <div class="col-sm-3 hidden-xs"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
-				</form>
+				<form action="index.php" method="post">
+                    <div class="col-xs-7"> <?php echo $username ?>
+                        <input hidden name="controller" value="Home">
+                        <input hidden name="action" value="deconnexion">
+                        <button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button>
+                    </div>
+                    <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
+                </form>
 			</div>	
 		</div>
     </div>

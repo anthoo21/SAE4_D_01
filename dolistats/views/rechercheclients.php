@@ -21,7 +21,7 @@
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
+                        <button type="submit" class="boutonNavbar" title="Recherche articles"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
                         alt="logo Recherche Articles"></button>
                     </div>
 				</form>
@@ -31,7 +31,7 @@
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheClientMenu.png"
+                        <button type="submit" class="boutonNavbar" title="Recherche clients"><img class="logoNav" src="../assets/RechercheClientMenu.png"
                         alt="logo Recherche clients"></button>
                     </div>
                 </form>
@@ -41,7 +41,7 @@
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" 
+                        <button type="submit" class="boutonNavbar" title="Palmares articles"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" 
                         alt="logo palmares articles"></button>
                     </div>
 				</form>
@@ -51,7 +51,7 @@
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
+                        <button type="submit" class="boutonNavbar" title="Palmares clients"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
                         alt="logo palmares client"></button>
                     </div>
                 </form>
@@ -61,7 +61,7 @@
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
-                        <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
+                        <button type="submit" class="boutonNavbar" title="Affichage chiffre d'affaire"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
                         alt="logo CA"></button>
                     </div>
                 </form>
