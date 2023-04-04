@@ -25,12 +25,14 @@ use controllers\PalmaresArticlesController;
 use controllers\palmaresClientController;
 use controllers\ClientsController;
 use controllers\FacturesController;
+use controllers\chiffreAffaireController;
 use services\LoginService;
 use services\ArticlesService;
 use services\ClientsService;
 use services\FacturesService;
 use services\PalmaresArticlesService;
 use services\palmaresClientService;
+use services\chiffreAffaireService;
 use yasmf\ComponentFactory;
 use yasmf\NoControllerAvailableForName;
 use yasmf\NoServiceAvailableForName;
@@ -41,6 +43,7 @@ require("services/PalmaresArticlesService.php");
 require("services/palmaresClientService.php");
 require("services/ClientsService.php");
 require("services/FacturesService.php");
+require("services/chiffreAffaireService.php");
 /**
  *  The controller factory
  */
@@ -54,7 +57,7 @@ class DefaultComponentFactory implements ComponentFactory
     private ?palmaresClientService $palmaresClientService = null;
     private ?ClientsService $clientsService = null;
     private ?FacturesService $facturesService = null;
-    private ?chiffreaffaireservice $chiffreaffaireservice = null;
+    private ?chiffreAffaireService $chiffreAffaireservice = null;
 
     /**
      * @param string $controller_name the name of the controller to instanciate
@@ -69,7 +72,7 @@ class DefaultComponentFactory implements ComponentFactory
             "palmaresClient" => $this->buildPalmaresClientController(),
             "Clients" => $this->buildClientsController(),
             "Factures" => $this->buildFacturesController(),
-            "chiffreaffaire" => $this->buildChiffreAffaireController(),
+            "chiffreAffaire" => $this->buildChiffreAffaireController(),
             default => throw new NoControllerAvailableForName($controller_name)
         };
     }
@@ -83,7 +86,7 @@ class DefaultComponentFactory implements ComponentFactory
             "palmaresClient" => $this->buildPalmaresClientService(),
             "Clients" => $this->buildClientsService(),
             "Factures" => $this->buildFacturesService(),
-            "chiffreaffaire" => $this->buildChiffreAffaireController(),
+            "chiffreAffaire" => $this->buildChiffreAffaireService(),
             default => throw new NoServiceAvailableForName($service_name)
         };
     }
@@ -156,13 +159,14 @@ class DefaultComponentFactory implements ComponentFactory
     }
 
     /**
-     * @return chiffreaffaireservice
+     * @return chiffreAffaireservice
      */
-    private function buildChiffreAffaireService(): chiffreaffaireservice
+    private function buildChiffreAffaireService(): chiffreAffaireService
     {
-        if ($this->chiffreaffaireservice == null) {
-            $this->chiffreaffaireservice = new chiffreaffaireservice();
+        if ($this->chiffreAffaireservice == null) {
+            $this->chiffreAffaireservice = new chiffreAffaireService();
         }   
+        return $this->chiffreAffaireservice;
     }
 
     public function buildHomeController(): HomeController {
@@ -189,8 +193,8 @@ class DefaultComponentFactory implements ComponentFactory
         return new FacturesController($this->buildFacturesService());
     }
 
-    public function buildChiffreAffaireController(): chiffreaffairecontroller {
-        return new chiffreaffairecontroller($this->buildChiffreAffaireService());
+    public function buildChiffreAffaireController(): chiffreAffaireController {
+        return new chiffreAffaireController($this->buildChiffreAffaireService());
     }
 
 }
