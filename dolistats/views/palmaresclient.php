@@ -18,7 +18,11 @@
                 <form action="index.php" method="post">
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Articles">
-                        <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+                        <input type="hidden" name="apiUrl" value="<?php
+
+use function PHPUnit\Framework\equalTo;
+
+ echo $apiUrl; ?>">
                         <input type="hidden" name="username" value="<?php echo $username; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png" alt="logo Recherche Articles"></button>
@@ -127,7 +131,12 @@
                     $LignePrix = "";
                     $Titre = "Le prix";
                     $i = 0;
+                    date_default_timezone_set('Europe/Paris');
                     foreach ($resultatFac as $CA) {
+                        $timestamp = $CA['date']; // renvoie un timestamp
+                        $date = date('Y-m-d', $timestamp); // format date bd et input date différents
+                        // Dans l'intervalle de date
+                        if ($date >= $_POST['dateDe'] && $date <= $_POST['dateA']) {
                         $DonneesFacture[$i] = $CA['socid'];
                         $PrixFactures[$i] = $CA['total_ht'];
                         $i++;
@@ -136,6 +145,7 @@
                         // } else {
                         //     $DonneesFacture[$CA['socid']] = $CA['total'];
                         // }
+                        }
                     }
 
                     $i = 0;
@@ -149,7 +159,8 @@
                         //     $DonnesClient[$nom['socid']] = $nom['total'];
                         // }
                     }
-
+                    //var_dump($PrixFactures);
+                    //var_dump($NomClient);
                     // foreach ($client as $ligne) {
                     for ($i = 0; $i <= count($DonneesFacture) - 1; $i++) {
                         if (in_array($DonneesFacture[$i], $DonneesClient)) {
