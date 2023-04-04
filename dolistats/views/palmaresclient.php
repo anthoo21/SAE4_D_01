@@ -182,7 +182,9 @@
                         }
                     }
                     echo "</table>";
-                    echo "<canvas id=\"myChart\" width=\"200px\" height=\"127.5px\"></canvas>";
+                    echo "<div width=\"400\" height=\"225\">";
+                    echo "<canvas id=\"myChart\"></canvas>";
+                    echo "</div>";
 
                     foreach ($bonNomClient as $key => $value) {
                         if ($LigneClient != "") $LigneClient .= ","; // Mise en forme graphique
@@ -224,6 +226,7 @@
                     type: 'pie',
                     data,
                     options: {
+                        maintainAspectRatio: false,
                         scales: {
                             y: {
                                 beginAtZero: true

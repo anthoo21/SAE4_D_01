@@ -208,8 +208,8 @@
             echo "</tr>";
         }
         echo "</table>";
-        echo "<div row col-xs-6 >";
-        echo "<canvas id=\"myChart\" width=\"400\" height=\"225\"></canvas>";
+        echo "<div row col-xs-6 width=\"400\" height=\"225\" >";
+        echo "<canvas id=\"myChart\"></canvas>";
         echo "</div>";
         echo "</div>";
         $ligneLibelle = "[" . $ligneLibelle . "]";  // Ajout des crochets
