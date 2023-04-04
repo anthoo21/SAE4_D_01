@@ -27,7 +27,9 @@ class ClientsController
     public function index() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
+        $username = HttpHelper::getParam('username');
         $view = new View("views/rechercheclients");
+        $view->setVar('username', $username);
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         return $view;
@@ -37,10 +39,12 @@ class ClientsController
         $recherche = htmlspecialchars(HttpHelper::getParam('recherche'));
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
+        $username = HttpHelper::getParam('username');
         $resultat = $this->clientsService->getClients($recherche, $apiUrl, $apiKey);
         $view = new View("views/rechercheclients");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
+        $view->setVar('username', $username);
         $view->setVar('resultat', $resultat);
         $view->setVar('recherche', $recherche);
         return $view;

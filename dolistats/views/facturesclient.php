@@ -18,6 +18,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Articles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
                         alt="logo Recherche Articles"></button>
@@ -27,6 +28,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Clients">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheClientMenu.png"
                         alt="logo Recherche clients"></button>
@@ -36,6 +38,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="PalmaresArticles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" 
                         alt="logo palmares articles"></button>
@@ -45,6 +48,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
                         alt="logo palmares client"></button>
@@ -54,6 +58,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="CA">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
                         alt="logo CA"></button>
@@ -64,11 +69,14 @@
 			<!--Espace dans la navbar-->
 			</div>
 			<div class="col-xs-2">
-				<form action="factureClient.php" method="post">				
-					<div class="col-xs-7">Nom prénom
-					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
+                <form action="index.php" method="post">
+                    <div class="col-xs-7"> <?php echo $username ?>
+                        <input hidden name="controller" value="Home">
+                        <input hidden name="action" value="deconnexion">
+                        <button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button>
+                    </div>
                     <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
-				</form>
+                </form>
 			</div>	
 		</div>
     </div>

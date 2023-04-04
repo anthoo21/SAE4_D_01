@@ -35,6 +35,11 @@ class HomeController
         return $view;
     }
 
+    public function deconnexion() {
+        $view = new View("views/choixUrl");
+        return $view;
+    }
+
     public function connexion() {
         $login = htmlspecialchars(HttpHelper::getParam('login'));
         $password = htmlspecialchars(HttpHelper::getParam('password'));

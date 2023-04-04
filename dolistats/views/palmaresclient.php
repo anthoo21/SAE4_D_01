@@ -19,6 +19,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Articles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png" alt="logo Recherche Articles"></button>
                     </div>
@@ -27,6 +28,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Clients">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheClientMenu.png" alt="logo Recherche clients"></button>
                     </div>
@@ -35,6 +37,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="PalmaresArticles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" alt="logo palmares articles"></button>
                     </div>
@@ -43,6 +46,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" alt="logo palmares client"></button>
                     </div>
@@ -51,6 +55,7 @@
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="CA">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" alt="logo CA"></button>
                     </div>
@@ -60,8 +65,10 @@
                 <!--Espace dans la navbar-->
             </div>
             <div class="col-xs-2">
-                <form action="rechercheArticle.php" method="post">
-                    <div class="col-xs-7"> Nom Prénom
+                <form action="index.php" method="post">
+                    <div class="col-xs-7"> <?php echo $username ?>
+                        <input hidden name="controller" value="Home">
+                        <input hidden name="action" value="deconnexion">
                         <button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button>
                     </div>
                     <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
@@ -96,12 +103,14 @@
                         <input type="hidden" name="action" value="palmares">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl; ?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey; ?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <button type="submit" class="search-button">Valider</span></button>
                     </div>
                 </form>
             </div>
         </div>
         <!--Liste des clients rentables-->
+        <?php if(isset($resultatFac)) { ?>
         <div class="row">
             <table class="table table-striped">
                 <tr>
@@ -110,35 +119,47 @@
                 </tr>
 
                 <?php
-                /*
                 $DonneesFacture = [];
-                $DonnesClient = [];
+                $PrixFactures = [];
+                $DonneesClient = [];
+                $NomClient = [];
+                $i = 0;
                 foreach ($resultatFac as $CA) {
-                    if (array_key_exists($CA['socid'], $DonneesFacture)) {
-                        $DonneesFacture[$CA['socid']] = $DonneesFacture[$CA['socid']] + $CA['total'];
-                    } else {
-                        $DonneesFacture[$CA['socid']] = $CA['total'];
-                    }
+                    $DonneesFacture[$i] = $CA['socid'];
+                    $PrixFactures[$i] = $CA['total_ht'];
+                    $i++;
+                    // if (array_key_exists($CA['socid'], $DonneesFacture)) {
+                    //     $DonneesFacture[$CA['socid']] = $DonneesFacture[$CA['socid']] + $CA['total'];
+                    // } else {
+                    //     $DonneesFacture[$CA['socid']] = $CA['total'];
+                    // }
                 }
 
+                $i = 0;
                 foreach ($resultatCli as $nom) {
-                    if (array_key_exists($nom['socid'], $DonnesClient)) {
-                        $DonnesClient[$nom['socid']] = $DonnesClient[$nom['socid']] + $nom['total'];
-                    } else {
-                        $DonnesClient[$nom['socid']] = $nom['total'];
-                    }
+                    $DonneesClient[$i] = $nom['ref'];
+                    $NomClient[$i] = $nom['name'];
+                    $i++;
+                    // if (array_key_exists($nom['socid'], $DonnesClient)) {
+                    //     $DonnesClient[$nom['socid']] = $DonnesClient[$nom['socid']] + $nom['total'];
+                    // } else {
+                    //     $DonnesClient[$nom['socid']] = $nom['total'];
+                    // }
                 }
 
-                foreach ($client as $ligne) {
-                    echo "<tr>";
-                    echo "<td>" . $ligne['nom'] . "</td>";       //Vérifier le nom de la variable
-                    echo "<td>" . $ligne['prenom'] . "</td>";  //Vérifier le nom de la variable
-                    echo "<td>" . $ligne['ca'] . "</td>";      //Vérifier le nom de la variable
-                    echo "</tr>";
-                } */
+                // foreach ($client as $ligne) {
+                for($i = 0; $i <= count($DonneesFacture)-1; $i++) {
+                    if(in_array($DonneesFacture[$i],$DonneesClient)) {
+                        echo "<tr>";
+                            echo "<td>".$NomClient[$i]."</td>";     //Vérifier le nom de la variable
+                            echo "<td>".(float)number_format($PrixFactures[$i],2,'.','')."€</td>";      //Vérifier le nom de la variable
+                        echo "</tr>";
+                    }
+                }
                 ?>
             </table>
         </div>
+        <?php } ?>
     </div>
 </body>
 

@@ -12,7 +12,10 @@
 if(isset($resultat)) {
     foreach($resultat as $ligne) {
         $apiKey = $ligne['token'];
+        $message = $ligne['message'];
     }
+    $delimiter_pos = strpos($message, "-");
+    $username = trim(substr($message, 8, $delimiter_pos - 8));
 }
 ?>
 <body>
@@ -25,6 +28,7 @@ if(isset($resultat)) {
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Articles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheArticleMenu.png"
                         alt="logo Recherche Articles"></button>
@@ -34,6 +38,7 @@ if(isset($resultat)) {
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="Clients">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/RechercheClientMenu.png"
                         alt="logo Recherche clients"></button>
@@ -43,6 +48,7 @@ if(isset($resultat)) {
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="PalmaresArticles">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresArticlesMenu.png" 
                         alt="logo palmares articles"></button>
@@ -52,6 +58,7 @@ if(isset($resultat)) {
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="palmaresClient">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/PalmaresClientMenu.png" 
                         alt="logo palmares client"></button>
@@ -61,6 +68,7 @@ if(isset($resultat)) {
                     <div class="col-xs-2">
                         <input type="hidden" name="controller" value="CA">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
+                        <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
                         alt="logo CA"></button>
@@ -71,11 +79,14 @@ if(isset($resultat)) {
 			<!--Espace dans la navbar-->
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-4">
-				<form action="rechercheArticle.php" method="post">				
-					<div class="col-sm-9 col-xs-12" class="deco"> Nom Prénom
-					<button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button> </div>
-                    <div class="col-sm-3 hidden-xs"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
-				</form>
+                <form action="index.php" method="post">
+                    <div class="col-xs-7"> <?php echo $username ?>
+                        <input hidden name="controller" value="Home">
+                        <input hidden name="action" value="deconnexion">
+                        <button type="submit" name="deconnexion" value="true" title="Déconnexion">Déconnexion</button>
+                    </div>
+                    <div class="col-xs-5"><img class="logoNav" src="../assets/Logo.png" alt="logo Doli"></div>
+                </form>
 			</div>	
 		</div>
     </div>

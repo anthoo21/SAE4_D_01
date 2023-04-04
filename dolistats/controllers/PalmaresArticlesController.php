@@ -27,19 +27,23 @@ class PalmaresArticlesController
     public function index() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
+        $username = HttpHelper::getParam('username');
         $view = new View("views/palmaresarticle");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
+        $view->setVar('username', $username);
         return $view;
     }
 
     public function palmares() {
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
+        $username = HttpHelper::getParam('username');
         $resultat = $this->palmaresArticlesService->getArticles($apiUrl, $apiKey);
         $view = new View("views/palmaresarticle");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
+        $view->setVar('username', $username);
         $view->setVar('resultat', $resultat);
         return $view;
     }
