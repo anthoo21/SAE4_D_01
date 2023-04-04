@@ -66,7 +66,7 @@ if(isset($resultat)) {
                 </form>
                 <form action="index.php" method="post">
                     <div class="col-xs-2">
-                        <input type="hidden" name="controller" value="CA">
+                        <input type="hidden" name="controller" value="chiffreAffaire">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="username" value="<?php echo $username;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
