@@ -52,7 +52,7 @@
                 </form>
                 <form action="index.php" method="post">
                     <div class="col-xs-2">
-                        <input type="hidden" name="controller" value="CA">
+                        <input type="hidden" name="controller" value="chiffreAffaire">
                         <input type="hidden" name="apiUrl" value="<?php echo $apiUrl;?>">
                         <input type="hidden" name="apiKey" value="<?php echo $apiKey;?>">
                         <button type="submit" class="boutonNavbar"><img class="logoNav" src="../assets/ComparaisonCAMenu.png" 
