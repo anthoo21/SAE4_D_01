@@ -208,7 +208,9 @@
             echo "</tr>";
         }
         echo "</table>";
+        echo "<div row col-xs-6 >";
         echo "<canvas id=\"myChart\" width=\"400\" height=\"225\"></canvas>";
+        echo "</div>";
         echo "</div>";
         $ligneLibelle = "[" . $ligneLibelle . "]";  // Ajout des crochets
         $ligneQuantite = "[" . $ligneQuantite . "]";  // Ajout des crochets 
@@ -228,7 +230,7 @@
                             }
                             ?>',
                     data: <?php echo $ligneQuantite; ?>,
-                    backgroundColor: 'rgb(255, 99, 132)', // TODO le style
+                    backgroundColor: 'rgb(56, 108, 132)', 
 
                     borderWidth: 1
                 }]
