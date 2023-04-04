@@ -123,6 +123,9 @@
                 $PrixFactures = [];
                 $DonneesClient = [];
                 $NomClient = [];
+                $LigneClient = "";
+                $LignePrix = "";
+                $Titre = "Le prix";
                 $i = 0;
                 foreach ($resultatFac as $CA) {
                     $DonneesFacture[$i] = $CA['socid'];
@@ -156,9 +159,51 @@
                         echo "</tr>";
                     }
                 }
+                echo "</table>";
+                echo "<canvas id=\"myChart\" width=\"400\" height=\"225\"></canvas>";
+
+                foreach ($NomClient as $key => $value) {
+                    if ($LigneClient != "") $LigneClient .= ",";// Mise en forme graphique
+                    $LigneClient .= '"' . $value . '"';
+                } 
+                foreach ($PrixFactures as $key => $value) {
+                    if ($LignePrix != "") $LignePrix .= ",";// Mise en forme graphique
+                    $LignePrix .= '"' . $value . '"';
+                }
+                $LigneClient = "[" . $LigneClient . "]";  // Ajout des crochets
+                $LignePrix = "[" . $LignePrix . "]";  // Ajout des crochets 
                 ?>
             </table>
         </div>
+        <script type="text/javascript" src="../jchart4-2-1-Min.js"></script>
+        <script>
+            // setup 
+            const data = {
+                labels: <?php echo $LigneClient; ?>,
+
+                datasets: [{
+                    label: '<?php echo $Titre?>',
+                    data: <?php echo $LignePrix; ?>,
+                    backgroundColor: 'rgb(255, 99, 132)', // TODO le style
+
+                    borderWidth: 1
+                }]
+            };
+            console.log(data);
+
+            const config1 = {
+                type: 'pie',
+                data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+            const myChart = new Chart(document.getElementById('myChart'), config1);
+        </script>
         <?php } ?>
     </div>
 </body>
