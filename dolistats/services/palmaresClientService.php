@@ -45,8 +45,8 @@ class palmaresClientService {
         return $resultat;
     }
     
-    public static function getFactures($apiUrl, $apiKey) {
-        $apiUrl = $apiUrl."invoices?sortfield=t.total_ht&sortorder=DESC&limit=100";
+    public static function getFactures($apiUrl, $apiKey, $rechercheNb) {
+        $apiUrl = $apiUrl."invoices?sortfield=t.total_ht&sortorder=DESC&limit=".$rechercheNb;
         $curl = curl_init();
         
         curl_setopt($curl, CURLOPT_URL, $apiUrl);				// Url de l'API à appeler

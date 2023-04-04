@@ -163,10 +163,12 @@
                     //var_dump($PrixFactures);
                     //var_dump($NomClient);
                     // foreach ($client as $ligne) {
+					$bonNomClient = [];
                     for ($i = 0; $i <= count($DonneesFacture) - 1; $i++) {
                         if (in_array($DonneesFacture[$i], $DonneesClient)) {
+							$bonNomClient[$i] = $NomClient[$i];
                             echo "<tr>";
-                            echo "<td>" . $NomClient[$i] . "</td>";     //Vérifier le nom de la variable
+                            echo "<td>" . $bonNomClient[$i] . "</td>";     //Vérifier le nom de la variable
                             echo "<td>" . (float)number_format($PrixFactures[$i], 2, '.', '') . "€</td>";      //Vérifier le nom de la variable
                             echo "</tr>";
                         }
@@ -174,7 +176,7 @@
                     echo "</table>";
                     echo "<canvas id=\"myChart\" width=\"200px\" height=\"127.5px\"></canvas>";
 
-                    foreach ($NomClient as $key => $value) {
+                    foreach ($bonNomClient as $key => $value) {
                         if ($LigneClient != "") $LigneClient .= ","; // Mise en forme graphique
                         $LigneClient .= '"' . $value . '"';
                     }

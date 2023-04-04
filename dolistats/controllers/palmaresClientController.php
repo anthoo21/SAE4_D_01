@@ -40,14 +40,16 @@ class palmaresClientController
         $apiUrl = HttpHelper::getParam('apiUrl');
         $apiKey = HttpHelper::getParam('apiKey');
         $username = HttpHelper::getParam('username');
+		$rechercheNb = HttpHelper::getParam('rechercheNb');
         $resultatCli = $this->palmaresClientService->getClients($apiUrl, $apiKey);
-        $resultatFac= $this->palmaresClientService->getFactures($apiUrl, $apiKey);
+        $resultatFac= $this->palmaresClientService->getFactures($apiUrl, $apiKey, $rechercheNb);
         $view = new View("views/palmaresclient");
         $view->setVar('apiUrl', $apiUrl);
         $view->setVar('apiKey', $apiKey);
         $view->setVar('username', $username);
         $view->setVar('resultatCli', $resultatCli);
         $view->setVar('resultatFac', $resultatFac);
+		$view->setVar('rechercheNb', $rechercheNb);
         return $view;
     }
 }
